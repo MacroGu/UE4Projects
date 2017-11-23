@@ -20,6 +20,31 @@ void ATankPlayerController::BeginPlay()
 
 }
 
+void ATankPlayerController::Tick(float DelatTime)
+{
+
+	AimToTarget();
+}
+
+void ATankPlayerController::AimToTarget()
+{
+	// if getHitLocation
+	// Tank-> MoveTowards 
+	FVector HitLocation;
+	if (GetSightRayHitLocation(HitLocation))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+	}
+
+}
+
+bool ATankPlayerController::GetSightRayHitLocation(FVector & outHitLocation)
+{
+	DeprojectScreenPositionToWorld
+
+	return false;
+}
+
 ATank* ATankPlayerController::GetControlledTank()
 {
 

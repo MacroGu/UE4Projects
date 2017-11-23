@@ -26,7 +26,11 @@ class TANKS_API ATankPlayerController : public APlayerController
 public:
 	virtual void BeginPlay() override;
 
+	virtual void Tick(float DelatTime) override;
+
 	ATank* GetControlledTank();
 	
-	
+	void AimToTarget();
+
+	bool GetSightRayHitLocation(FVector &outHitLocation);
 };
