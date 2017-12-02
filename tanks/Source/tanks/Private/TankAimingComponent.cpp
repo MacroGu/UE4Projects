@@ -38,6 +38,23 @@ void UTankAimingComponent::Initialize(UTankBarrel * BarrelToSet, UTankTurret * T
 	Turret = TurretToSet;
 }
 
+void UTankAimingComponent::Fire()
+{
+	UE_LOG(LogTemp, Warning, TEXT("fire"));
+	if (Barrel == nullptr || ProjectileType == nullptr)
+	{
+		return;
+	}
+
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(
+		ProjectileType,
+		Barrel->GetSocketLocation(FName("FireLocation")),
+		Barrel->GetSocketRotation(FName("FireLocation"))
+		);
+	Projectile->LaunchProjectile(LaunchSpeed);
+
+}
+
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
 	if (Barrel == nullptr || Turret == nullptr)
