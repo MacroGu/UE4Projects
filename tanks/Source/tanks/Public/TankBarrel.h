@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/World.h"
 #include "Components/StaticMeshComponent.h"
 #include "TankBarrel.generated.h"
-
 
 
 
@@ -28,4 +28,6 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float MinDegree = -5.0f;
+
+	void MoveBarrel(FVector AimDirection);
 };

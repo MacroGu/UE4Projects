@@ -63,6 +63,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 	{
 		// 通知炮塔 和炮管 转向 
 		UE_LOG(LogTemp, Warning, TEXT("Fire Vector: %s"), *FireVector.GetSafeNormal().ToString());
+		Turret->MoveTurret(FireVector.GetSafeNormal());
+		Barrel->MoveBarrel(FireVector.GetSafeNormal());
 	}
 }
 
