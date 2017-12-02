@@ -11,7 +11,7 @@ void UTankBarrel::MoveBarrel(FVector AimDirection)
 
 	float RelativeSpeed = FMath::Clamp<float>(ChangePitch, -1, 1);
 	float RotationChange = RelativeSpeed * MaxDegreePersecond * GetWorld()->DeltaTimeSeconds;
-	float NewRotationPitch = CurrentRotation.Pitch + RotationChange;
+	float NewRotationPitch = RelativeRotation.Pitch + RotationChange;
 	// limitation of Pitch
 	NewRotationPitch = FMath::Clamp<float>(NewRotationPitch, MinDegree, MaxDegree);
 

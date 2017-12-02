@@ -21,7 +21,7 @@ void UTankTurret::MoveTurret(FVector AimDirection)
 
 	float RelativeSpeed = FMath::Clamp<float>(ChangeYaw, -1, 1);
 	float RotationChange = RelativeSpeed * MaxDegreePerSecond * GetWorld()->DeltaTimeSeconds;
-	float NewRotationYaw = RotationChange + CurrentRotation.Yaw;
+	float NewRotationYaw = RotationChange + RelativeRotation.Yaw;
 
 
 
