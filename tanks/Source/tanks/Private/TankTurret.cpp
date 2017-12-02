@@ -7,7 +7,7 @@ void UTankTurret::MoveTurret(FVector AimDirection)
 	FRotator CurrentRotation = GetForwardVector().Rotation();
 	FRotator AimRotation = AimDirection.Rotation();
 
-	float ChangeYaw = AimRotation.Yaw - CurrentRotation.Yaw;
+	ChangeYaw = AimRotation.Yaw - CurrentRotation.Yaw;
 	// ==0 >0 <0
 
 	if (ChangeYaw > 180)
@@ -26,4 +26,11 @@ void UTankTurret::MoveTurret(FVector AimDirection)
 
 
 	SetRelativeRotation(FRotator(0, NewRotationYaw, 0));
+
+
+}
+
+float UTankTurret::GetChangeYaw()
+{
+	return this->ChangeYaw;
 }

@@ -30,6 +30,26 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	if (Barrel == nullptr || Turret == nullptr)
+	{
+		return;
+	}
+	if ((FPlatformTime::Seconds() - LastFireTime) < TankReloadTime)
+	{
+		FiringState = EFiringState::Reloading;
+		return;
+	}
+
+	if (FMath::Abs(Turret->GetChangeYaw()) > 3)
+	{
+		FiringState = EFiringState::Aiming;
+	}
+	else
+	{
+		FiringState = EFiringState::Locked;
+	}
+
+
 }
 
 void UTankAimingComponent::Initialize(UTankBarrel * BarrelToSet, UTankTurret * TurretToSet)
@@ -40,8 +60,8 @@ void UTankAimingComponent::Initialize(UTankBarrel * BarrelToSet, UTankTurret * T
 
 void UTankAimingComponent::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("fire"));
-	if (Barrel == nullptr || ProjectileType == nullptr)
+	bool isReload = (FPlatformTime::Seconds() - LastFireTime) > TankReloadTime;
+	if (Barrel == nullptr || ProjectileType == nullptr || !isReload)
 	{
 		return;
 	}
@@ -52,6 +72,7 @@ void UTankAimingComponent::Fire()
 		Barrel->GetSocketRotation(FName("FireLocation"))
 		);
 	Projectile->LaunchProjectile(LaunchSpeed);
+	LastFireTime = FPlatformTime::Seconds();
 
 }
 
@@ -79,7 +100,6 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 	if (bHaveSolution)
 	{
 		// 通知炮塔 和炮管 转向 
-		UE_LOG(LogTemp, Warning, TEXT("Fire Vector: %s"), *FireVector.GetSafeNormal().ToString());
 		Turret->MoveTurret(FireVector.GetSafeNormal());
 		Barrel->MoveBarrel(FireVector.GetSafeNormal());
 	}

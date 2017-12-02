@@ -13,6 +13,13 @@
 
 
 
+UENUM(BlueprintType)
+enum class EFiringState : uint8 {
+	Reloading,
+	Aiming,
+	Locked
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TANKS_API UTankAimingComponent : public UActorComponent
 {
@@ -47,4 +54,13 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileType;
+
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	float TankReloadTime = 3.0f;
+
+	UPROPERTY(BlueprintReadOnly)
+	EFiringState FiringState = EFiringState::Aiming;
+
+private:
+	double LastFireTime = 0.0;
 };

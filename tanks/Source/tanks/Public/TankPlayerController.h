@@ -28,6 +28,7 @@ public:
 
 	virtual void Tick(float DelatTime) override;
 
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank();
 	
 	void AimToTarget();

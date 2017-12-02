@@ -25,4 +25,9 @@ public:
 	
 
 	void MoveTurret(FVector AimDirection);
+
+	float GetChangeYaw();
+
+private:
+	float ChangeYaw;
 };
