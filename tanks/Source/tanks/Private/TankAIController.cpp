@@ -22,6 +22,25 @@ void ATankAIController::BeginPlay()
 }
 
 
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (GetControlledTank())
+	{
+		// 让坦克 向玩家移动
+
+		MoveToActor(GetPlayerTank(), AcceptenceRadius);
+
+		// 炮塔转向玩家
+		auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+		AimingComponent->AimAt(GetPlayerTank()->GetActorLocation());
+		if (AimingComponent->FiringState == EFiringState::Locked)
+		{
+			AimingComponent->Fire();
+		}
+	}
+}
+
 ATank* ATankAIController::GetControlledTank()
 {
 

@@ -5,9 +5,9 @@
 #include "Tank.h"
 #include "Engine/World.h"
 #include "CoreMinimal.h"
+#include "TankAimingComponent.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
-
 
 
 
@@ -27,8 +27,13 @@ class TANKS_API ATankAIController : public AAIController
 public:
 	virtual void BeginPlay() override;
 
+	virtual void Tick(float DeltaTime) override;
+
 	ATank* GetControlledTank();
+
 	ATank* GetPlayerTank();
 	
-	
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	float AcceptenceRadius = 3000.0f;
+
 };

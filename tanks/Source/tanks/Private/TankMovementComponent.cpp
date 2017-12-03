@@ -24,3 +24,17 @@ void UTankMovementComponent::MoveRight(float Throttle)
 	LeftTrack->SetThrottle(Throttle);
 	RightTrack->SetThrottle(-Throttle);
 }
+
+void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *MoveVelocity.GetSafeNormal().ToString());
+	auto MoveVelocityNormal = MoveVelocity.GetSafeNormal();
+	auto AIForwardNormal = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIRightNormal = GetOwner()->GetActorRightVector();
+
+	auto ForwardSpeed = FVector::DotProduct(MoveVelocity, AIForwardNormal); // -1 ~ 1
+	auto RightSpeed = FVector::DotProduct(MoveVelocityNormal, AIRightNormal);
+
+	MoveForward(ForwardSpeed);
+	MoveRight(RightSpeed);
+}
