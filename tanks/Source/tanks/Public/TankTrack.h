@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/World.h"
 #include "Components/StaticMeshComponent.h"
 #include "TankTrack.generated.h"
-
 
 
 
@@ -33,6 +33,8 @@ public:
 	void SetThrottle(float Throttle);  // -1 ~ 1
 
 	void DriveTrack();
+
+	void ApplySideForce();
 
 	UPROPERTY(EditAnyWhere, Category="Setup")
 	float TankMaDrivingForce = 40000000.0f;   // a = 1m/s   F = ma	
