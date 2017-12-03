@@ -24,12 +24,19 @@ class TANKS_API UTankTrack : public UStaticMeshComponent
 	
 public:
 
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	void OnHit( UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit );
+
 	UFUNCTION(BlueprintCallable, Category="Input")
 	void SetThrottle(float Throttle);  // -1 ~ 1
+
+	void DriveTrack();
 
 	UPROPERTY(EditAnyWhere, Category="Setup")
 	float TankMaDrivingForce = 40000000.0f;   // a = 1m/s   F = ma	
 	
-	
+	float ThrottleToDrive = 0;
 	
 };
