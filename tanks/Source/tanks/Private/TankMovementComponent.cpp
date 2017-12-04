@@ -27,7 +27,6 @@ void UTankMovementComponent::MoveRight(float Throttle)
 
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *MoveVelocity.GetSafeNormal().ToString());
 	auto MoveVelocityNormal = MoveVelocity.GetSafeNormal();
 	auto AIForwardNormal = GetOwner()->GetActorForwardVector().GetSafeNormal();
 	auto AIRightNormal = GetOwner()->GetActorRightVector();
