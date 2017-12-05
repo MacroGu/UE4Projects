@@ -54,3 +54,8 @@ float ATank::GetHealthPercentage()
 	return (float) CurrentHp / MaxHp;
 }
 
+void ATank::ResetHealth()
+{
+	CurrentHp = MaxHp;
+}
+

@@ -96,9 +96,33 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 	return false;
 }
 
+void ATankPlayerController::TankResPawn()
+{
+	GetWorldTimerManager().ClearTimer(TankRespawnHandle);
+	TArray<AActor* > PlayerStarts;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APlayerStart::StaticClass(), PlayerStarts);
+	AActor* SpawnTarget = PlayerStarts[0];
+
+	if (MyTank == nullptr )
+	{
+		return;
+	}
+	MyTank->ResetHealth();
+	MyTank->SetActorTransform(SpawnTarget->GetTransform());
+	Possess(MyTank);
+	PlayerState->bIsSpectator = false;
+	ChangeState(NAME_Playing);
+}
+
 void ATankPlayerController::OnControlledTankDeath()
 {
-	StartSpectatingOnly();
+	MyTank = GetControlledTank();
+	// StartSpectatingOnly();
+	PlayerState->bIsSpectator = true;
+	ChangeState(NAME_Spectating);
+
+	GetWorldTimerManager().SetTimer(TankRespawnHandle, this, &ATankPlayerController::TankResPawn, RespawnTime, false);
+
 }
 
 ATank* ATankPlayerController::GetControlledTank()

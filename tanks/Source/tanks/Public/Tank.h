@@ -38,6 +38,8 @@ public:
 	float GetHealthPercentage();
 
 	FTankDelegate OnDeath;
+
+	void ResetHealth();
 private:
 	UPROPERTY(EditAnywhere, Category = "Health")
 	int32 MaxHp = 100;

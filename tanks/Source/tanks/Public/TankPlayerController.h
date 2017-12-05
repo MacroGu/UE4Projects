@@ -6,12 +6,12 @@
 #include "TankAimingComponent.h"
 #include "CoreMinimal.h"
 #include "Engine/World.h"
+#include "GameFramework/PlayerState.h"
 #include "GameFramework/PlayerController.h"
+#include "TimerManager.h"
+#include "GameFramework/PlayerStart.h"
+#include "Kismet/GameplayStatics.h"
 #include "TankPlayerController.generated.h"
-
-
-
-
 
 
 
@@ -40,7 +40,11 @@ public:
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector &OutHitLocation);
 
 	UFUNCTION()
+	void TankResPawn();
+
+	UFUNCTION()
 	void OnControlledTankDeath();
+
 private:
 	float CrosshairXLocation = 0.5f;
 	float CrosshairYLocation = 0.3f;
@@ -48,4 +52,10 @@ private:
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000.0f;
 
+	UPROPERTY(EditAnywhere)
+	float RespawnTime = 5.0f;
+	
+	FTimerHandle TankRespawnHandle;
+
+	ATank* MyTank = nullptr;
 };
