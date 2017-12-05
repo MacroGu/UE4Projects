@@ -23,11 +23,32 @@ void ATankPlayerController::BeginPlay()
 void ATankPlayerController::Tick(float DelatTime)
 {
 	// Move to aim location
+	Super::Tick(DelatTime);
 	AimToTarget();
+}
+
+void ATankPlayerController::SetPawn(APawn * InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (InPawn)
+	{
+		auto ProcessedTank = Cast<ATank>(InPawn);
+		if (!ProcessedTank)
+		{
+			return;
+		}
+		ProcessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnControlledTankDeath);
+	}
 }
 
 void ATankPlayerController::AimToTarget()
 {
+	if (!GetPawn())
+	{
+		return;
+	}
+
 	// if getHitLocation
 	// Tank-> MoveTowards 
 	FVector HitLocation;
@@ -73,6 +94,11 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 	
 	OutHitLocation = FVector(0.0f);
 	return false;
+}
+
+void ATankPlayerController::OnControlledTankDeath()
+{
+	StartSpectatingOnly();
 }
 
 ATank* ATankPlayerController::GetControlledTank()

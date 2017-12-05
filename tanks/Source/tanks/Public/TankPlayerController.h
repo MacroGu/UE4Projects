@@ -28,6 +28,8 @@ public:
 
 	virtual void Tick(float DelatTime) override;
 
+	virtual void SetPawn(APawn* InPawn) override;
+
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank();
 	
@@ -37,10 +39,13 @@ public:
 
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector &OutHitLocation);
 
+	UFUNCTION()
+	void OnControlledTankDeath();
 private:
 	float CrosshairXLocation = 0.5f;
 	float CrosshairYLocation = 0.3f;
 
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000.0f;
+
 };

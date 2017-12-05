@@ -29,11 +29,16 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void SetPawn(APawn* InPawn) override;
+
 	ATank* GetControlledTank();
 
 	ATank* GetPlayerTank();
 	
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float AcceptenceRadius = 3000.0f;
+
+	UFUNCTION()
+	void OnControlledTankDeath();
 
 };

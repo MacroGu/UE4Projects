@@ -18,14 +18,12 @@ void ATankAIController::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("Controlled Tank is: %s, Player Tank is:%s "), 
 			*ControlledTank->GetName(), *PlayerTank->GetName());
 	}
-
 }
-
 
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (GetControlledTank())
+	if (GetControlledTank() && GetPlayerTank())
 	{
 		// 让坦克 向玩家移动
 
@@ -38,6 +36,21 @@ void ATankAIController::Tick(float DeltaTime)
 		{
 			AimingComponent->Fire();
 		}
+	}
+}
+
+void ATankAIController::SetPawn(APawn * InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (InPawn)
+	{
+		auto ProcessedTank = Cast<ATank>(InPawn);
+		if (!ProcessedTank)
+		{
+			return;
+		}
+		ProcessedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::OnControlledTankDeath);
 	}
 }
 
@@ -58,4 +71,14 @@ ATank* ATankAIController::GetPlayerTank()
 	}
 
 	return playerTank;
+}
+
+void ATankAIController::OnControlledTankDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("AI Tank dead"));
+	if (GetControlledTank())
+	{
+		GetControlledTank()->DetachFromControllerPendingDestroy();
+	}
+
 }
