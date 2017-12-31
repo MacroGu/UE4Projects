@@ -5,6 +5,7 @@
             "includePath": [
                 "C:/ue4Engine/UE_4.18/Engine/Source",
                 "E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Source",
+                "E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Intermediate/Build/Win64/UE4Editor/Inc/CppLearnFirstPerson",
                 "E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Source/CppLearnFirstPerson",
                 "C:/ue4Engine/UE_4.18/Engine/Source/Runtime/Core/Public",
                 "C:/ue4Engine/UE_4.18/Engine/Source/Runtime/Core/Public/Internationalization",
@@ -352,6 +353,7 @@
                 "path": [
                     "C:/ue4Engine/UE_4.18/Engine/Source",
                     "E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Source",
+                    "E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Intermediate/Build/Win64/UE4Editor/Inc/CppLearnFirstPerson",
                     "E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Source/CppLearnFirstPerson",
                     "C:/ue4Engine/UE_4.18/Engine/Source/Runtime/Core/Public",
                     "C:/ue4Engine/UE_4.18/Engine/Source/Runtime/Core/Public/Internationalization",
