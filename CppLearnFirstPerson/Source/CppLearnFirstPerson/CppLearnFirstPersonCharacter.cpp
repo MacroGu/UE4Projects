@@ -108,9 +108,9 @@ void ACppLearnFirstPersonCharacter::Tick(float DeltaTime)
 			{
 				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("You are hitting: %s"),
 				*OutHit.GetActor()->GetName()));
-				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Impact Point: %s"),
+				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Green, FString::Printf(TEXT("Impact Point: %s"),
 				*OutHit.ImpactPoint.ToString()));
-				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Normal Point: %s"),
+				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Blue, FString::Printf(TEXT("Normal Point: %s"),
 				*OutHit.ImpactNormal.ToString()));
 			}
 		}
