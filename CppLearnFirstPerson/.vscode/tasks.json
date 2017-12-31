@@ -1,0 +1,617 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"taskName": "CppLearnFirstPerson Win32 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Shipping",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Shipping",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Test",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win32 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win32",
+				"Test",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Shipping",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Shipping",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Test",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson Win64 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"Win64",
+				"Test",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Shipping",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Shipping",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Test",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPerson HTML5 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPerson",
+				"HTML5",
+				"Test",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPersonEditor Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPersonEditor",
+				"Win64",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPersonEditor Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPersonEditor",
+				"Win64",
+				"Debug",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPersonEditor Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPersonEditor",
+				"Win64",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPersonEditor Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPersonEditor",
+				"Win64",
+				"DebugGame",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPersonEditor Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"CppLearnFirstPersonEditor",
+				"Win64",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		},
+		{
+			"taskName": "CppLearnFirstPersonEditor Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"CppLearnFirstPersonEditor",
+				"Win64",
+				"Development",
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\ue4Engine\\UE_4.18"
+			}
+		}
+	]
+}

@@ -1,0 +1,114 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "CppLearnFirstPerson (Debug)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPerson Win64 Debug Build",
+			"program": "E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\Binaries\\Win64\\CppLearnFirstPerson-Win64-Debug.exe",
+			"args": [
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "CppLearnFirstPerson (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPerson Win64 DebugGame Build",
+			"program": "E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\Binaries\\Win64\\CppLearnFirstPerson-Win64-DebugGame.exe",
+			"args": [
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "CppLearnFirstPerson (Development)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPerson Win64 Development Build",
+			"program": "E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\Binaries\\Win64\\CppLearnFirstPerson.exe",
+			"args": [
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "CppLearnFirstPerson (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPerson Win64 Shipping Build",
+			"program": "E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\Binaries\\Win64\\CppLearnFirstPerson-Win64-Shipping.exe",
+			"args": [
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "CppLearnFirstPerson (Test)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPerson Win64 Test Build",
+			"program": "E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\Binaries\\Win64\\CppLearnFirstPerson-Win64-Test.exe",
+			"args": [
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "CppLearnFirstPersonEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPersonEditor Win64 Debug Build",
+			"program": "C:\\ue4Engine\\UE_4.18\\Engine\\Binaries\\Win64\\UE4Editor-Win64-Debug.exe",
+			"args": [
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-debug"
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "CppLearnFirstPersonEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPersonEditor Win64 DebugGame Build",
+			"program": "C:\\ue4Engine\\UE_4.18\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject",
+				"-debug"
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "CppLearnFirstPersonEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "CppLearnFirstPersonEditor Win64 Development Build",
+			"program": "C:\\ue4Engine\\UE_4.18\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"E:\\UE4_Projects\\UE4CppProjects\\CppLearnFirstPerson\\CppLearnFirstPerson.uproject"
+			],
+			"cwd": "C:\\ue4Engine\\UE_4.18",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\ue4Engine\\UE_4.18\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		}
+	]
+}

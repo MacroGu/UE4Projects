@@ -1,0 +1,8 @@
+{
+	"typescript.tsc.autoDetect": "off",
+	"files.exclude": {
+		"E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/.vscode": true,
+		"E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Content": true,
+		"E:/UE4_Projects/UE4CppProjects/CppLearnFirstPerson/Intermediate": true
+	}
+}

@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "DrawDebugHelpers.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AcppLearnCharacter
@@ -45,6 +46,41 @@ AcppLearnCharacter::AcppLearnCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
+}
+
+void AcppLearnCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	FHitResult OutHit;
+
+	FVector Start = GetComponentLocation();
+	FVector ForwardVector = ThirdPersonCameraComponent->GetForwardVector();
+
+	FVector End = (Start + ForwardVector * 1000.0f);
+
+	FCollisionQueryParams CollisionParams;
+
+	DrawDebugLine(GetWorld(), Start, End), FColor::Green, false, 1, 0,1);
+
+	bool isHit = GetWorld()->LineTraceSingleByChannel(OutHit, Start, End, ECC_Visibility, CollisionParams);
+
+	if(isHit)
+	{
+		if(OutHit.bBlockingHit)
+		{
+			if(GEngine)
+			{
+				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Print(TEXT("You are hit %s"),
+				*OutHit.GetActor()->GetName()));
+				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Print(TEXT("Impact Point %s"),
+				*OutHit.ImpactPoint.ToString()));
+				GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Print(TEXT("Normal Point %s"),
+				*OutHit.ImpactNormal.ToString()));
+			}
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
