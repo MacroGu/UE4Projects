@@ -22,10 +22,14 @@ public:
 	// 修改菜单音量
 	void ResetMenuVolume(float MusicVol, float SoundVol);
 
+
+
 public:
 	ECultureTeam CurrentCulture;
 	float MusicVolume;	// 音量大小
 	float SoundVolume;	// 音效大小
+	// 存档数据
+	TArray<FString> RecordDataList;
 
 private:
 	// 创建单例
@@ -38,6 +42,9 @@ private:
 	// 根据字符串来获取 Enum 值
 	template<typename TEnum>
 	TEnum GetEnumValueFromString(const FString& EnumName, FString String);
+
+	// 初始化存档数据
+	void InitRecordData();
 
 private:
 	static TSharedPtr<SlAiDataHandle> DataInstance;

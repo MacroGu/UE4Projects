@@ -15,6 +15,9 @@ class SLAICOURSE_API SlAiJsonHandle
 public:
 	SlAiJsonHandle();
 
+	// 解析存档方法
+	void RecordDataJsonRead(FString& Culture, float& MusicVolume, float& SoundVolume, TArray<FString>& RecordDataList);
+
 private:
 	
 	// 读取Json 文件到字符串

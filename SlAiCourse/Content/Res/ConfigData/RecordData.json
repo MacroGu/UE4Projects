@@ -1,6 +1,6 @@
  [
 		{
-			"Cultrue": "ZH"
+			"Culture": "ZH"
 		},
 		{
 			"MusicVolume": 0.3
@@ -12,6 +12,9 @@
 			"RecordData": [
 				{
 					"0": "Default"
+				},
+				{
+					"1": "RecordOne"
 				}
 			]
 		}

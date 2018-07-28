@@ -17,6 +17,4 @@ namespace SlAiHelper
 			GEngine->AddOnScreenDebugMessage(-1, Duration, FColor::Yellow, Message);
 		}
 	}
-
-
 }
