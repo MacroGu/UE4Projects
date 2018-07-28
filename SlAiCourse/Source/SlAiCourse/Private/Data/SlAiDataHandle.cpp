@@ -52,6 +52,8 @@ void SlAiDataHandle::ChangeLocalizationCulture(ECultureTeam Culture)
 
 	// 赋值
 	CurrentCulture = Culture;
+	// 更新存档数据
+	SlAiSingleton<SlAiJsonHandle>::Get()->UpdateRecordData(GetEnumValueAsString<ECultureTeam>(FString("ECultureTeam"), CurrentCulture), MusicVolume, SoundVolume, &RecordDataList);
 }
 
 void SlAiDataHandle::ResetMenuVolume(float MusicVol, float SoundVol)
@@ -65,10 +67,9 @@ void SlAiDataHandle::ResetMenuVolume(float MusicVol, float SoundVol)
 	{
 		SoundVolume = SoundVol;
 	}
-
+	// 更新存档数据
+	SlAiSingleton<SlAiJsonHandle>::Get()->UpdateRecordData(GetEnumValueAsString<ECultureTeam>(FString("ECultureTeam"), CurrentCulture), MusicVolume, SoundVolume, &RecordDataList);
 }
-
-
 
 template<typename TEnum>
 FString SlAiDataHandle::GetEnumValueAsString(const FString& Name, TEnum Value)
@@ -79,7 +80,7 @@ FString SlAiDataHandle::GetEnumValueAsString(const FString& Name, TEnum Value)
 		return FString("InValid");
 	}
 
-	return EnumPtr->GetEnumName((int32)Value);
+	return EnumPtr->GetNameStringByIndex((int32)Value);
 }
 
 template<typename TEnum>
