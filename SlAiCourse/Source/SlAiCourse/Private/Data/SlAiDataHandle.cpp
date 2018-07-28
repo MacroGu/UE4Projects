@@ -97,6 +97,8 @@ TEnum SlAiDataHandle::GetEnumValueFromString(const FString& EnumName, FString St
 
 void SlAiDataHandle::InitRecordData()
 {
+	RecordName = FString("");
+
 	// 获取语言
 	FString Culture;
 	// 读取存档数据
