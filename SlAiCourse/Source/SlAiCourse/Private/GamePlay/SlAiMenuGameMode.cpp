@@ -6,10 +6,20 @@
 
 
 
+#include "SlAiGameInstance.h"
+#include "Kismet/GameplayStatics.h"
+
+
+
 ASlAiMenuGameMode::ASlAiMenuGameMode()
 {
 	PlayerControllerClass = ASlAiMenuController::StaticClass();
 	HUDClass = ASlAiMenuHUD::StaticClass();
+}
+
+void ASlAiMenuGameMode::BeginPlay()
+{
+	Cast<USlAiGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()))->GameName = FString("SlAiCourse");
 
 
 }
