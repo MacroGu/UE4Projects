@@ -104,13 +104,118 @@ void SSlAiMenuWidget::Construct(const FArguments& InArgs)
 
 
 	InitializeMenuList();
+	InitializedAnimation();
 
 }
+
+void SSlAiMenuWidget::Tick(const FGeometry& AllottedGeometry, const double InCurrentTime, const float InDeltaTime)
+{
+	switch (AnimState)
+	{
+	case EMenuAnim::Stop:
+		break;
+	case EMenuAnim::Close:
+		// 如果正在播放
+		if (MenuAnimation.IsPlaying())
+		{
+			// 实时修改 Menu 的大小
+			ResetWidgetSize(MenuCurve.GetLerp() * 600.f, -1.f);
+			// 在关闭了40%的时候设置不显示组件
+			if (MenuCurve.GetLerp() < 0.6f && IsMenuShow)
+			{
+				ChooseWidget(EMenuType::None);
+			}
+		}
+		else
+		{
+			// 关闭动画 已经完了, 设置新的状态为打开
+			AnimState = EMenuAnim::Open;
+			// 开始播放打开动画
+			MenuAnimation.Play(this->AsShared());
+		}
+		break;
+	case EMenuAnim::Open:
+		// 如果正在播放
+		if (MenuAnimation.IsPlaying())
+		{
+			// 实时修改 Menu 大小
+			ResetWidgetSize(MenuCurve.GetLerp() * 600.f, CurrentHeight);
+			// 打开60% 之后显示组件
+			if (MenuCurve.GetLerp() > 0.6f && !IsMenuShow)
+			{
+				ChooseWidget(CurrentMenu);
+			}
+		}
+		// 如果已经播放完毕
+		if (MenuAnimation.IsAtEnd())
+		{
+			// 修改状态为Stop
+			AnimState = EMenuAnim::Stop;
+			// 解锁按钮
+			ControlLocked = false;
+		}
+
+		break;
+	default:
+		break;
+	}
+}
+
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 void SSlAiMenuWidget::MenuItemOnClicked(EMenuItem::Type ItemType)
 {
-//	SlAiHelper::Debug(FString("hhhh"), 5.f);
+	// 如果锁住了， 直接return
+	if (ControlLocked) return;
+	// 设置锁住了按钮
+	ControlLocked = true;
+
+	switch (ItemType)
+	{
+	case EMenuItem::None:
+		break;
+	case EMenuItem::StartGame:
+		PlayClose(EMenuType::StartGame);
+		break;
+	case EMenuItem::GameOption:
+		PlayClose(EMenuType::GameOption);
+		break;
+	case EMenuItem::QuitGame:
+
+		ControlLocked = false;
+
+		break;
+	case EMenuItem::NewGame:
+		PlayClose(EMenuType::NewGame);
+		break;
+	case EMenuItem::LoadRecord:
+		PlayClose(EMenuType::ChooseRecord);
+		break;
+	case EMenuItem::StartGameGoBack:
+		PlayClose(EMenuType::MainMenu);
+		break;
+	case EMenuItem::GameOptionGoBack:
+		PlayClose(EMenuType::MainMenu);
+		break;
+	case EMenuItem::NewGameGoBack:
+		PlayClose(EMenuType::StartGame);
+		break;
+	case EMenuItem::ChooseRecordGoBack:
+		PlayClose(EMenuType::StartGame);
+		break;
+	case EMenuItem::EnterGame:
+
+		ControlLocked = false;
+
+		break;
+	case EMenuItem::EnterRecord:
+
+		ControlLocked = false;
+
+		break;
+	default:
+		break;
+	}
 
 }
 
@@ -171,17 +276,18 @@ void SSlAiMenuWidget::InitializeMenuList()
 		// 选择存档界面
 		TArray<TSharedPtr<SCompoundWidget>> ChooseRecordList;
 		SAssignNew(ChooseRecordWidget, SSlAiChooseRecordWidget);
+		ChooseRecordList.Add(ChooseRecordWidget);
 		ChooseRecordList.Add(SNew(SSlAiMenuItemWidget).ItemText(NSLOCTEXT("SlAiMenu", "EnterRecord", "EnterRecord")).ItemType(EMenuItem::EnterRecord).OnClicked(this, &SSlAiMenuWidget::MenuItemOnClicked));
 		ChooseRecordList.Add(SNew(SSlAiMenuItemWidget).ItemText(NSLOCTEXT("SlAiMenu", "GoBack", "GoBack")).ItemType(EMenuItem::ChooseRecordGoBack).OnClicked(this, &SSlAiMenuWidget::MenuItemOnClicked));
 		MenuMap.Add(EMenuType::ChooseRecord, MakeShareable(new MenuGroup(NSLOCTEXT("SlAiMenu", "LoadRecord", "LoadRecord"), 510.f, &ChooseRecordList)));
 	}
 
-
-	ChooseWidget(EMenuType::MainMenu);
 }
 
 void SSlAiMenuWidget::ChooseWidget(EMenuType::Type WidgetType)
 {
+	// 定义是否已经显示菜单
+	IsMenuShow = WidgetType != EMenuType::None;
 	// 移出所有组件
 	ContentBox->ClearChildren();
 	// 如果MenuType 是 none
@@ -193,8 +299,6 @@ void SSlAiMenuWidget::ChooseWidget(EMenuType::Type WidgetType)
 	}
 	// 更改标题
 	TitleText->SetText((*MenuMap.Find(WidgetType))->MenuName);
-	// 修改Size
-	ResetWidgetSize(600.f, (*MenuMap.Find(WidgetType))->MenuHeight);
 }
 
 // 如果高度不修改， 传入 -1
@@ -204,4 +308,37 @@ void SSlAiMenuWidget::ResetWidgetSize(float NewWidth, float NewHeight)
 	if (NewHeight < 0) return;
 
 	RootSizeBox->SetHeightOverride(NewHeight);
+}
+
+void SSlAiMenuWidget::InitializedAnimation()
+{
+	// 开始延时
+	const float StartDelay = 0.3f;
+	// 持续时间
+	const float AnimDuration = 0.6f;
+	MenuAnimation = FCurveSequence();
+	MenuCurve = MenuAnimation.AddCurve(StartDelay, AnimDuration, ECurveEaseFunction::QuadInOut);
+	// 初始设置Menu 大小
+	ResetWidgetSize(600.f, 510.f);
+	// 初始显示主界面
+	ChooseWidget(EMenuType::MainMenu);
+	// 运行点击按钮
+	ControlLocked = false;
+	// 设置动画状态为停止
+	AnimState = EMenuAnim::Stop;
+	// 设置动画播放器跳结尾  也就是 1
+	MenuAnimation.JumpToEnd();
+
+}
+
+void SSlAiMenuWidget::PlayClose(EMenuType::Type NewMenu)
+{
+	// 设置新的界面
+	CurrentMenu = NewMenu;
+	// 设置新高度
+	CurrentHeight = (*MenuMap.Find(NewMenu))->MenuHeight;
+	// 设置播放状态是 Close
+	AnimState = EMenuAnim::Close;
+	// 播放反向动画
+	MenuAnimation.PlayReverse(this->AsShared());
 }

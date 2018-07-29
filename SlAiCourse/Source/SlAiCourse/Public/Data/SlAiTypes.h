@@ -27,6 +27,7 @@ namespace EMenuItem
 		NewGame,
 		LoadRecord,
 		StartGameGoBack,
+		GameOptionGoBack,
 		NewGameGoBack,
 		ChooseRecordGoBack,
 		EnterGame,
@@ -46,5 +47,16 @@ namespace EMenuType
 		GameOption,
 		NewGame,
 		ChooseRecord
+	};
+}
+
+// Menu 动画状态枚举
+namespace EMenuAnim
+{
+	enum Type
+	{
+		Stop,		// 停止动画
+		Close,		// 关闭Menu
+		Open		// 打开Menu
 	};
 }
