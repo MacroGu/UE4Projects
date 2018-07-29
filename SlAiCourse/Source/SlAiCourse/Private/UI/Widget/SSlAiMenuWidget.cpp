@@ -14,6 +14,9 @@
 #include "SSlAiChooseRecordWidget.h"
 #include "SlAiHelper.h"
 #include "SlAiDataHandle.h"
+#include "Kismet/GameplayStatics.h"
+#include "SlAiMenuController.h"
+#include "Engine/World.h"
 
 
 // 每个结构体对应一个菜单
@@ -43,6 +46,8 @@ void SSlAiMenuWidget::Construct(const FArguments& InArgs)
 {
 	// 获取MenuStyle
 	MenuStyle = &SlAiStyle::Get().GetWidgetStyle<FSlAiMenuStyle>("BPSlAiMenuStyle");
+	// 播放背景音乐
+	FSlateApplication::Get().PlaySound(MenuStyle->MenuBackGroundMusic);
 
 	ChildSlot
 		[
@@ -181,9 +186,9 @@ void SSlAiMenuWidget::MenuItemOnClicked(EMenuItem::Type ItemType)
 		PlayClose(EMenuType::GameOption);
 		break;
 	case EMenuItem::QuitGame:
-
+		// 退出游戏， 播放声音并延时调用退出函数
+		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->ExitGameSound, this, &SSlAiMenuWidget::QuitGame);
 		ControlLocked = false;
-
 		break;
 	case EMenuItem::NewGame:
 		PlayClose(EMenuType::NewGame);
@@ -204,14 +209,10 @@ void SSlAiMenuWidget::MenuItemOnClicked(EMenuItem::Type ItemType)
 		PlayClose(EMenuType::StartGame);
 		break;
 	case EMenuItem::EnterGame:
-
-		ControlLocked = false;
-
+		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->StartGameSound, this, &SSlAiMenuWidget::EnterGame);
 		break;
 	case EMenuItem::EnterRecord:
-
-		ControlLocked = false;
-
+		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->StartGameSound, this, &SSlAiMenuWidget::EnterGame);
 		break;
 	default:
 		break;
@@ -341,4 +342,20 @@ void SSlAiMenuWidget::PlayClose(EMenuType::Type NewMenu)
 	AnimState = EMenuAnim::Close;
 	// 播放反向动画
 	MenuAnimation.PlayReverse(this->AsShared());
+	// 播放切换菜单音乐
+	FSlateApplication::Get().PlaySound(MenuStyle->MenuItemChangeSound);
+
+}
+
+void SSlAiMenuWidget::QuitGame()
+{
+	Cast<ASlAiMenuController>(UGameplayStatics::GetPlayerController(GWorld, 0))->ConsoleCommand("quit");
+
+
+}
+
+void SSlAiMenuWidget::EnterGame()
+{
+	SlAiHelper::Debug(FString("EnterGame"), 10.f);
+	ControlLocked = false;
 }

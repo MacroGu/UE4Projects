@@ -8,6 +8,7 @@
 #include "SlateBrush.h"
 #include "SlateFontInfo.h"
 #include "NoExportTypes.h"
+#include "SlateSound.h"
 #include "SlateTypes.h"
 #include "SlAiMenuWidgetStyle.generated.h"
 
@@ -105,6 +106,21 @@ struct SLAICOURSE_API FSlAiMenuStyle : public FSlateWidgetStyle
 	UPROPERTY(EditAnywhere, Category = GameOption)
 	FSliderStyle SliderStyle;
 
+	// 开始游戏声音
+	UPROPERTY(EditAnywhere, Category = Sound)
+	FSlateSound StartGameSound;
+
+	// 结束游戏声音
+	UPROPERTY(EditAnywhere, Category = Sound)
+	FSlateSound ExitGameSound;
+
+	// 转换按钮声音
+	UPROPERTY(EditAnywhere, Category = Sound)
+		FSlateSound MenuItemChangeSound;
+	
+	// Menu 背景声音
+	UPROPERTY(EditAnywhere, Category = Sound)
+		FSlateSound MenuBackGroundMusic;
 
 };
 
