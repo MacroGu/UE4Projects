@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
 #include "SlAiPlayerCharacter.generated.h"
 
 UCLASS()
@@ -15,17 +17,33 @@ public:
 	// Sets default values for this character's properties
 	ASlAiPlayerCharacter();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+public:
+	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")
+		class USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")
+		class UCameraComponent* ThirdCamera;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")
+		UCameraComponent* FirstCamera;
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+
+private:
+	// 第一人称的骨骼模型
+	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")
+		USkeletalMeshComponent* MeshFirst;
 	
 	
 };
