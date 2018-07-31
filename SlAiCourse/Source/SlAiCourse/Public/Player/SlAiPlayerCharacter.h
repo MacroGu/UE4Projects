@@ -41,6 +41,17 @@ protected:
 
 
 private:
+	void MoveForward(float Value);
+	void MoveRight(float Value);
+	void LookUpAtRate(float Value);
+	void Turn(float Value);
+	void TurnAtRate(float Value);
+	void OnStartJump();
+	void OnStopJump();
+	void OnStartRun();
+	void OnStopRun();
+
+private:
 	// 第一人称的骨骼模型
 	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")
 		USkeletalMeshComponent* MeshFirst;

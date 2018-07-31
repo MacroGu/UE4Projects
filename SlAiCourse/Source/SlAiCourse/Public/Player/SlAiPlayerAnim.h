@@ -14,7 +14,18 @@ class SLAICOURSE_API USlAiPlayerAnim : public UAnimInstance
 {
 	GENERATED_BODY()
 	
+
+public:
+	USlAiPlayerAnim();
+
+
 	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayAnim)
+		float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayAnim)
+		FRotator SpineRotator;
 	
 	
 };

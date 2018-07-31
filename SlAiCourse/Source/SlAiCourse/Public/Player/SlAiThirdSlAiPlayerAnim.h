@@ -13,8 +13,17 @@ UCLASS()
 class SLAICOURSE_API USlAiThirdSlAiPlayerAnim : public USlAiPlayerAnim
 {
 	GENERATED_BODY()
+
+
+	USlAiThirdSlAiPlayerAnim();
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayAnim)
+		bool IsInAir;
 	
-	
-	
-	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayAnim)
+		float Direction;
+
+
 };
