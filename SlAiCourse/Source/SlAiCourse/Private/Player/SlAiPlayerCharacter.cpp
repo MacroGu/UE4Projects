@@ -131,7 +131,7 @@ void ASlAiPlayerCharacter::MoveForward(float Value)
 	if (Value == 0.f || !Controller) return;
 
 	const FRotator Rotation = Controller->GetControlRotation();
-	FVector Direction = FRotationMatrix(Rotation).GetScaledAxes(EAxis::X);
+	FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::X);
 	AddMovementInput(Direction, Value);
 }
 
