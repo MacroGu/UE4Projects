@@ -15,7 +15,12 @@ class SLAICOURSE_API USlAiThirdSlAiPlayerAnim : public USlAiPlayerAnim
 	GENERATED_BODY()
 
 
+public:
 	USlAiThirdSlAiPlayerAnim();
+
+protected:
+	// 重写更新属性方法
+	virtual void UpdateParameter() override;
 
 public:
 

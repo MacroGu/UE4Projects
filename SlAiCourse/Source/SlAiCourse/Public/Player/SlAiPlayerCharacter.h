@@ -57,4 +57,9 @@ private:
 		USkeletalMeshComponent* MeshFirst;
 	
 	
+
+	// Ðý×ªµÄ±ÈÀý
+	float BaseLookUpRate;
+	float BaseTurnRate;
+
 };

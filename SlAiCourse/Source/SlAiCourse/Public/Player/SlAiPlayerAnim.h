@@ -18,7 +18,7 @@ class SLAICOURSE_API USlAiPlayerAnim : public UAnimInstance
 public:
 	USlAiPlayerAnim();
 
-
+	virtual void NativeUpdateAnimation(float DeltaSeconds);
 	
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayAnim)
@@ -27,5 +27,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayAnim)
 		FRotator SpineRotator;
 	
-	
+protected:
+	// 获取角色指针
+	void InitSPCharacter();
+
+	// 更新属性
+	virtual void UpdateParameter();
+
+protected:
+	// 角色指针
+	class ASlAiPlayerCharacter* SPCharacer;
 };
