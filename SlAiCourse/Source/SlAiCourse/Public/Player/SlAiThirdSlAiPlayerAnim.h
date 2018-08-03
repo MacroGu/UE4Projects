@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Player/SlAiPlayerAnim.h"
+#include "SlAiHelper.h"
+#include "ConstructorHelpers.h"
 #include "SlAiThirdSlAiPlayerAnim.generated.h"
+
 
 /**
  * 

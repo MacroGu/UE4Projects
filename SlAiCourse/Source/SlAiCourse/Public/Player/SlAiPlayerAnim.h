@@ -6,6 +6,9 @@
 #include "Animation/AnimInstance.h"
 #include "SlAiPlayerAnim.generated.h"
 
+
+class UAnimMontage;
+
 /**
  * 
  */
@@ -34,7 +37,18 @@ protected:
 	// 更新属性
 	virtual void UpdateParameter();
 
+	// 更新动作
+	virtual void UpdateMontage();
+
 protected:
 	// 角色指针
 	class ASlAiPlayerCharacter* SPCharacer;
+
+	// 上半身的montage
+	UAnimMontage* PlayerHitMontage;
+	UAnimMontage* PlayerFightMontage;
+	UAnimMontage* PlayerPunchMontage;
+	UAnimMontage* PlayerEatMontage;
+	UAnimMontage* PlayerPickUpMontage;
+
 };

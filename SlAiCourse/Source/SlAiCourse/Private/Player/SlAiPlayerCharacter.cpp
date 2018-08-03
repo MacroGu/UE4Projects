@@ -107,6 +107,9 @@ ASlAiPlayerCharacter::ASlAiPlayerCharacter()
 	// 设置初始速度为150.f
 	GetCharacterMovement()->MaxWalkSpeed = 150.f;
 
+	// 初始化为第三人称
+	GameView = EGameViewMode::Third; 
+
 }
 
 // Called when the game starts or when spawned
@@ -145,6 +148,29 @@ void ASlAiPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 
 
+
+void ASlAiPlayerCharacter::ChangeView(EGameViewMode::Type NewGameView)
+{
+	GameView = NewGameView;
+	switch (GameView)
+	{
+	case EGameViewMode::First:
+		FirstCamera->SetActive(true);
+		ThirdCamera->SetActive(false);
+		MeshFirst->SetOwnerNoSee(false);
+		GetMesh()->SetOwnerNoSee(true);
+		break;
+	case EGameViewMode::Third:
+		FirstCamera->SetActive(false);
+		ThirdCamera->SetActive(true);
+		MeshFirst->SetOwnerNoSee(true);
+		GetMesh()->SetOwnerNoSee(false);
+		break;
+	default:
+		break;
+	}
+
+}
 
 void ASlAiPlayerCharacter::MoveForward(float Value)
 {

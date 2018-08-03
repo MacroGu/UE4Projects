@@ -6,7 +6,11 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Character.h"
 #include "Camera/CameraComponent.h"
+#include "SlAiTypes.h"
+
 #include "SlAiPlayerCharacter.generated.h"
+
+
 
 UCLASS()
 class SLAICOURSE_API ASlAiPlayerCharacter : public ACharacter
@@ -17,12 +21,14 @@ public:
 	// Sets default values for this character's properties
 	ASlAiPlayerCharacter();
 
-public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// 修改视角
+	void ChangeView(EGameViewMode::Type NewGameView);
 
 public:
 	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")
@@ -33,6 +39,9 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")
 		UCameraComponent* FirstCamera;
+
+	// 当前的视角模型
+	EGameViewMode::Type GameView;
 
 
 protected:
