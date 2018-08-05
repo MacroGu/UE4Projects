@@ -87,6 +87,7 @@ void SlAiDataHandle::ResetMenuVolume(float MusicVol, float SoundVol)
 	SlAiSingleton<SlAiJsonHandle>::Get()->UpdateRecordData(GetEnumValueAsString<ECultureTeam>(FString("ECultureTeam"), CurrentCulture), MusicVolume, SoundVolume, &RecordDataList);
 }
 
+
 template<typename TEnum>
 FString SlAiDataHandle::GetEnumValueAsString(const FString& Name, TEnum Value)
 {
@@ -152,4 +153,15 @@ void SlAiDataHandle::InitializedMenuAudio()
 
 	// 重置一下声音
 	ResetMenuVolume(MusicVolume, SoundVolume);
+}
+
+void SlAiDataHandle::InitializeGameData()
+{
+	// 初始化物品属性图
+	InitObjectAttr();
+}
+
+void SlAiDataHandle::InitObjectAttr()
+{
+	SlAiSingleton<SlAiJsonHandle>::Get()->ObjectAttrJsonRead(ObjectAttrMap);
 }

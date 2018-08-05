@@ -23,7 +23,8 @@ public:
 	void ChangeLocalizationCulture(ECultureTeam Culture);
 	// 修改菜单音量
 	void ResetMenuVolume(float MusicVol, float SoundVol);
-
+	// 游戏数据初始化
+	void InitializeGameData();
 
 
 public:
@@ -34,6 +35,8 @@ public:
 	TArray<FString> RecordDataList;
 	// 存档名
 	FString RecordName;
+	// 物品属性图
+	TMap<int, TSharedPtr<ObjectAttribute>> ObjectAttrMap;
 
 private:
 	// 创建单例
@@ -51,6 +54,8 @@ private:
 	void InitRecordData();
 	// 初始化Menu声音数据
 	void InitializedMenuAudio();
+	// 初始化物品属性图
+	void InitObjectAttr();
 
 
 private:
