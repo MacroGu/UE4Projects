@@ -30,6 +30,10 @@ void ASlAiPlayerController::BeginPlay()
 	InputMode.SetConsumeCaptureMouseDown(true);
 	SetInputMode(InputMode);
 
+	// 设置预动作
+	LeftUpperType = EUpperBody::Punch;
+	RightUpperType = EUpperBody::PickUp;
+	
 }
 
 void ASlAiPlayerController::Tick(float DeltaSeconds)
@@ -54,6 +58,9 @@ void ASlAiPlayerController::SetupInputComponent()
 
 void ASlAiPlayerController::ChangeView()
 {
+	// 如果不允许切换视角， 直接返回
+	if (!SPCharacter->IsAllowSwitch) return;
+
 	switch (SPCharacter->GameView)
 	{
 	case EGameViewMode::First:
@@ -71,20 +78,20 @@ void ASlAiPlayerController::ChangeView()
 
 void ASlAiPlayerController::LeftEventStart()
 {
-
+	SPCharacter->UpperType = LeftUpperType;
 }
 
 void ASlAiPlayerController::LeftEventStop()
 {
-
+	SPCharacter->UpperType = EUpperBody::None;
 }
 
 void ASlAiPlayerController::RightEventStart()
 {
-
+	SPCharacter->UpperType = RightUpperType;
 }
 
 void ASlAiPlayerController::RightEventStop()
 {
-
+	SPCharacter->UpperType = EUpperBody::None;
 }

@@ -18,6 +18,9 @@ USlAiFirstPlayerAnim::USlAiFirstPlayerAnim()
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> PlayerPunchMon(TEXT("AnimMontage'/Game/Res/PolygonAdventure/Mannequin/FirstPlayer/Animation/UpperBody/FirstPlayerPunchMontage.FirstPlayerPunchMontage'"));
 	PlayerPunchMontage = PlayerPunchMon.Object;
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> PlayerPickUpMon(TEXT("AnimMontage'/Game/Res/PolygonAdventure/Mannequin/FirstPlayer/Animation/UpperBody/FirstPlayerPickUpMontage.FirstPlayerPickUpMontage'"));
-	PlayerPickUpMontage = PlayerPunchMon.Object;
+	PlayerPickUpMontage = PlayerPickUpMon.Object;
+
+	// 设置自己的运行人称是第一人称
+	GameView = EGameViewMode::First;
 
 }

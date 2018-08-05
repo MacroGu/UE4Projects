@@ -19,9 +19,10 @@ USlAiThirdSlAiPlayerAnim::USlAiThirdSlAiPlayerAnim()
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> PlayerPunchMon(TEXT("AnimMontage'/Game/Res/PolygonAdventure/Mannequin/Player/Animation/UpperBody/PlayerPunchMontage.PlayerPunchMontage'"));
 	PlayerPunchMontage = PlayerPunchMon.Object;
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> PlayerPickUpMon(TEXT("AnimMontage'/Game/Res/PolygonAdventure/Mannequin/Player/Animation/UpperBody/PlayerPickUpMontage.PlayerPickUpMontage'"));
-	PlayerPickUpMontage = PlayerPunchMon.Object;
+	PlayerPickUpMontage = PlayerPickUpMon.Object;
 
-
+	// 设置自己的运行人称是第一人称
+	GameView = EGameViewMode::Third;
 	// 给方向赋值
 	Direction = 0.f;
 	// 给是否在空中赋值

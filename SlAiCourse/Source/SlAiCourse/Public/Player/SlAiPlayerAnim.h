@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SlAiTypes.h"
 #include "Animation/AnimInstance.h"
 #include "SlAiPlayerAnim.generated.h"
 
@@ -40,6 +41,9 @@ protected:
 	// 更新动作
 	virtual void UpdateMontage();
 
+	// 修改是否允许切换视角
+	void AllowViewChange(bool IsAllow);
+
 protected:
 	// 角色指针
 	class ASlAiPlayerCharacter* SPCharacer;
@@ -50,5 +54,11 @@ protected:
 	UAnimMontage* PlayerPunchMontage;
 	UAnimMontage* PlayerEatMontage;
 	UAnimMontage* PlayerPickUpMontage;
+
+	// 保存当前播放的Montage
+	UAnimMontage* CurrentMontage;
+
+	// 指定自己的运行人称
+	EGameViewMode::Type GameView;
 
 };

@@ -70,3 +70,17 @@ namespace EGameViewMode
 		Third
 	};
 }
+
+// 上半身动画的状态
+namespace EUpperBody
+{
+	enum Type
+	{
+		None,
+		Punch,
+		Hit,
+		Fight,
+		PickUp,
+		Eat
+	};
+}

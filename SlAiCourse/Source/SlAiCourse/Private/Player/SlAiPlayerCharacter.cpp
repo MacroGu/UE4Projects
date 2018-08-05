@@ -109,6 +109,10 @@ ASlAiPlayerCharacter::ASlAiPlayerCharacter()
 
 	// 初始化为第三人称
 	GameView = EGameViewMode::Third; 
+	// 上半身初始无动作
+	UpperType = EUpperBody::None;
+	// 一开始允许切换视角
+	IsAllowSwitch = true;
 
 }
 
