@@ -17,7 +17,17 @@ class SLAICOURSE_API ASlAiGameHUD : public AHUD
 	
 public:
 	ASlAiGameHUD();
+
+public:
+	// ±£¥ÊGameMode÷∏’Î
+	class ASlAiGameMode* GM;
 	
+
+
+protected:
+
+	virtual void BeginPlay() override;
+
 
 private:
 	TSharedPtr<class SSlAiGameHUDWidget> GameHUDWidget;
