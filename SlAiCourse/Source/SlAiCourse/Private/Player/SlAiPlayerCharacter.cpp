@@ -11,6 +11,14 @@
 #include "RotationMatrix.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/ChildActorComponent.h"
+#include "Animation/AnimInstance.h"
+#include "Components/InputComponent.h"
+#include "Kismet/GameplayStatics.h"
+
+#include "SlAiHandObject.h"
+
+
 
 
 // Sets default values
@@ -101,6 +109,9 @@ ASlAiPlayerCharacter::ASlAiPlayerCharacter()
 	MeshFirst->SetOwnerNoSee(true);
 
 
+	// 实例化手上物品
+	HandObject = CreateDefaultSubobject<UChildActorComponent>(TEXT("HandObject"));
+
 	// 初始化参数
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
@@ -120,7 +131,14 @@ ASlAiPlayerCharacter::ASlAiPlayerCharacter()
 void ASlAiPlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	// 把手持物品组件绑定到第三人称模型右手插槽上
+	HandObject->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("RHSocket"));
+
+	// 添加Actor 到HandObject
+	HandObject->SetChildActorClass(ASlAiHandObject::StaticClass());
+
+
 }
 
 // Called every frame
