@@ -14,7 +14,16 @@ class SLAICOURSE_API ASlAiHandStone : public ASlAiHandObject
 {
 	GENERATED_BODY()
 	
-	
+
+
+public:
+	ASlAiHandStone();
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	
 	
 };

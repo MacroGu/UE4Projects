@@ -14,7 +14,17 @@ class SLAICOURSE_API ASlAiHandHammer : public ASlAiHandObject
 {
 	GENERATED_BODY()
 	
-	
-	
-	
+public:
+	ASlAiHandHammer();
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
+		UStaticMeshComponent* ExtendMesh;
+
+
 };

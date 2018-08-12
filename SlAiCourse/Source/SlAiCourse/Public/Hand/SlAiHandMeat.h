@@ -14,7 +14,12 @@ class SLAICOURSE_API ASlAiHandMeat : public ASlAiHandObject
 {
 	GENERATED_BODY()
 	
-	
-	
+public:
+	ASlAiHandMeat();
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 	
 };

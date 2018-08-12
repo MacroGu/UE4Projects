@@ -4,6 +4,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "ConstructorHelpers.h"
 #include "Engine/StaticMesh.h"
+#include "Components/BoxComponent.h"
 
 
 // Sets default values
@@ -11,15 +12,33 @@ ASlAiHandObject::ASlAiHandObject()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	// 实例化根组件
+	RootScene = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
+	RootComponent = RootScene;
 
+	// 创建静态模型
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BaseMesh"));
-	RootComponent = BaseMesh;
+	BaseMesh->SetupAttachment(RootComponent);
+	BaseMesh->SetCollisionProfileName(FName("NoCollision"));
+
+	// 实例化碰撞组件
+	AffectionCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("AffectCollision"));
+	AffectionCollision->SetupAttachment(RootComponent);
+	AffectionCollision->SetCollisionProfileName(FName("ToolProfile"));
 
 
-	// 给模型组件加上模型
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> StaticBaseMesh(TEXT("StaticMesh'/Game/Res/PolygonAdventure/Meshes/SM_Wep_Axe_01.SM_Wep_Axe_01'"));
+	// 初始化关闭Overlay 检测
+	AffectionCollision->SetGenerateOverlapEvents(false);
 
-	BaseMesh->SetStaticMesh(StaticBaseMesh.Object);
+	// 绑定检测方法到碰撞体
+	FScriptDelegate OverlayBegin;
+	OverlayBegin.BindUFunction(this, "OnOverlayBegin");
+	AffectionCollision->OnComponentBeginOverlap.Add(OverlayBegin);
+
+	FScriptDelegate OverlayEnd;
+	OverlayEnd.BindUFunction(this, "OnOverlayEnd");
+	AffectionCollision->OnComponentEndOverlap.Add(OverlayEnd);
+
 
 }
 
@@ -28,6 +47,16 @@ void ASlAiHandObject::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ASlAiHandObject::OnOverlayBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+
+}
+
+void ASlAiHandObject::OnOverlayEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+
 }
 
 // Called every frame

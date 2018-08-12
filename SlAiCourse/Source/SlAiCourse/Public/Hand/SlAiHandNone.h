@@ -14,7 +14,14 @@ class SLAICOURSE_API ASlAiHandNone : public ASlAiHandObject
 {
 	GENERATED_BODY()
 	
-	
+
+public:
+	ASlAiHandNone();
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 	
 	
 };

@@ -15,6 +15,13 @@ class SLAICOURSE_API ASlAiHandApple : public ASlAiHandObject
 	GENERATED_BODY()
 	
 	
+public:
+	ASlAiHandApple();
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 	
 	
 };
