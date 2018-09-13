@@ -15,9 +15,13 @@ public:
 	// Sets default values for this actor's properties
 	ASlAiHandObject();
 
-protected:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+
+	// 根据物品ID 返回物品的工厂方法
+	static TSubclassOf<AActor> SpawnHandObject(int objectID);
+
 
 public:
 

@@ -29,6 +29,10 @@ public:
 	// 获取选中容器内的物品的Index
 	int GetCurrentHandObjectIndex() const;
 
+
+	// 获取当前手持物品的物品类型
+	EObjectType::Type GetCurrentObjectType();
+
 public:
 
 	// 当被选中的快捷栏序号

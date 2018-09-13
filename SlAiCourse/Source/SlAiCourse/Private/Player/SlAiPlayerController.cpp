@@ -3,6 +3,7 @@
 #include "SlAiPlayerController.h"
 #include "SlAiPlayerCharacter.h"
 #include "SlAiPlayerState.h"
+#include "SlAiHandObject.h"
 
 
 
@@ -45,8 +46,11 @@ void ASlAiPlayerController::BeginPlay()
 
 void ASlAiPlayerController::Tick(float DeltaSeconds)
 {
-	// 100
-	// 龙潭路218
+	Super::Tick(DeltaSeconds);
+
+	// 临时代码
+	ChangePreUpperType(EUpperBody::None);
+
 }
 
 void ASlAiPlayerController::SetupInputComponent()
@@ -64,6 +68,12 @@ void ASlAiPlayerController::SetupInputComponent()
 	InputComponent->BindAction("ScrollUp", IE_Pressed, this, &ASlAiPlayerController::ScrollUpEvent);
 	InputComponent->BindAction("ScrollDown", IE_Pressed, this, &ASlAiPlayerController::ScrollDownEvent);
 
+}
+
+void ASlAiPlayerController::ChangeHandObject()
+{
+	// 生成手持物品
+	SPCharacter->ChangeHandObject(ASlAiHandObject::SpawnHandObject(SPState->GetCurrentHandObjectIndex()));
 }
 
 void ASlAiPlayerController::ChangeView()
@@ -119,6 +129,8 @@ void ASlAiPlayerController::ScrollUpEvent()
 
 	// 告诉状态类切换快捷栏容器
 	SPState->ChooseShortcut(true);
+	// 更改Character的手持物品
+	ChangeHandObject();
 }
 
 void ASlAiPlayerController::ScrollDownEvent()
@@ -131,4 +143,34 @@ void ASlAiPlayerController::ScrollDownEvent()
 
 	// 告诉状态类切换快捷栏容器
 	SPState->ChooseShortcut(false);
+	// 更改Character的手持物品
+	ChangeHandObject();
+
+}
+
+void ASlAiPlayerController::ChangePreUpperType(EUpperBody::Type RightType = EUpperBody::None)
+{
+	// 根据当前手持物品的类型来修改预动作
+	switch (SPState->GetCurrentObjectType())
+	{
+	case EObjectType::Normal:
+		LeftUpperType = EUpperBody::Punch;
+		RightUpperType = RightType;
+		break;
+	case EObjectType::Food:
+		LeftUpperType = EUpperBody::Punch;
+		// 如果右键状态是拾取那就给拾取，拾取优先级高
+		RightUpperType = RightType == EUpperBody::None ? EUpperBody::Eat : RightType;
+		break;
+	case EObjectType::Tool:
+		LeftUpperType = EUpperBody::Hit;
+		RightUpperType = RightType;
+		break;
+	case EObjectType::Weapon:
+		LeftUpperType = EUpperBody::Fight;
+		RightUpperType = RightType;
+		break;
+	}
+
+
 }
