@@ -22,6 +22,8 @@ public:
 	// 根据物品ID 返回物品的工厂方法
 	static TSubclassOf<AActor> SpawnHandObject(int objectID);
 
+	// 是否允许检测
+	void ChangeOverlayDetect(bool IsOpen);
 
 public:
 

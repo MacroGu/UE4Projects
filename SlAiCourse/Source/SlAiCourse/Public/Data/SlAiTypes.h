@@ -205,3 +205,63 @@ struct ShortcutContainer
 	}
 };
 
+// 资源类型
+namespace EResourceType
+{
+	enum Type
+	{
+		Plant = 0,
+		Metal,
+		Animal
+	};
+}
+
+// 资源属性结构体
+struct ResourceAttribute
+{
+	FText EN;	// 英文名
+	FText ZH;	// 中文名
+	EResourceType::Type ResourceType;
+	int HP;
+	TArray<TArray<int>> FlobObjectInfo;
+
+	ResourceAttribute(const FText ENName, const FText ZHName, const EResourceType::Type RT, const int HPValue, TArray<TArray<int>>* FOI)
+	{
+		EN = ENName;
+		ZH = ZHName;
+		ResourceType = RT;
+		HP = HPValue;
+
+		// 将数组元素迭代进本地数组
+		for (TArray<TArray<int>>::TIterator It(*FOI); It; ++It)
+		{
+			TArray<int> FlobObjectInfoItem;
+			for (TArray<int>::TIterator Ih(*It); Ih; ++Ih)
+			{
+				FlobObjectInfoItem.Add(*Ih);
+			}
+
+			FlobObjectInfo.Add(FlobObjectInfoItem);
+		}
+	}
+
+	// 临时代码
+// 	FString ToString()
+// 	{
+// 		FString InfoStr;
+// 		for (TArray<TArray<int>>::TIterator It(FlobObjectInfo); It; ++It)
+// 		{
+// 			for (TArray<int>::TIterator Ih(*It); Ih; ++Ih)
+// 			{
+// 				InfoStr += FString::FromInt(*Ih) + FString(".");
+// 			}
+// 			InfoStr += FString("__");
+// 		}
+// 
+// 		return EN.ToString() + FString("--") + ZH.ToString() + FString("--") + FString::FromInt((int)ResourceType) + FString("--") + FString::FromInt(HP) + FString("--") + InfoStr;
+// 	}
+
+};
+
+
+

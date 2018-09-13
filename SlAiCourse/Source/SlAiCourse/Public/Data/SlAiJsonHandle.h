@@ -25,6 +25,9 @@ public:
 	// 解析物品属性
 	void ObjectAttrJsonRead(TMap<int, TSharedPtr<ObjectAttribute>>& ObjectAttrMap);
 
+	// 解析资源属性
+	void ResourceAttrJsonRead(TMap<int, TSharedPtr<ResourceAttribute>>& ResourceAttrMap);
+
 
 private:
 	
@@ -40,12 +43,20 @@ private:
 	// 定义一个从string 转换到objecttype 的方法
 	EObjectType::Type StringToObjectType(const FString ArgStr);
 
+	// 定义一个从string转换到ResourceType的方法
+	EResourceType::Type StringToResourceType(const FString ArgStr);
+
+
+
 private:
 	// 存档文件名
 	FString RecordDataFileName;
 
 	// 物品属性文件名
 	FString ObjectAttrFileName;
+
+	// 资源属性文件名
+	FString ResourceAttrFileName;
 
 	// 相对路径
 	FString RelativePath;

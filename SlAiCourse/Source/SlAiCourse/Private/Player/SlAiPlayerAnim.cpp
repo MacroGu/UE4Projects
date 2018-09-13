@@ -22,6 +22,14 @@ void USlAiPlayerAnim::NativeUpdateAnimation(float DeltaSeconds)
 
 }
 
+void USlAiPlayerAnim::ChangeDetection(bool IsOpen)
+{
+	if (!SPCharacer) return;
+
+	SPCharacer->ChangeHandObjectDetect(IsOpen);
+
+}
+
 void USlAiPlayerAnim::InitSPCharacter()
 {
 	if (!SPCharacer)

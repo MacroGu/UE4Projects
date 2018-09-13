@@ -33,6 +33,8 @@ public:
 	// 修改当前的手持物品
 	void ChangeHandObject(TSubclassOf<AActor> HandObjectClass);
 
+	// 修改手持物品的碰撞检测是否开启
+	void ChangeHandObjectDetect(bool IsOpen);
 
 public:
 	UPROPERTY(VisibleDefaultsOnly, Category = "SlAi")

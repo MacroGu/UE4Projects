@@ -40,7 +40,7 @@ ASlAiHandObject::ASlAiHandObject()
 
 
 	// 初始化关闭Overlay 检测
-	AffectionCollision->SetGenerateOverlapEvents(true);
+	AffectionCollision->SetGenerateOverlapEvents(false);
 
 	// 绑定检测方法到碰撞体
 	FScriptDelegate OverlayBegin;
@@ -101,5 +101,10 @@ TSubclassOf<AActor> ASlAiHandObject::SpawnHandObject(int objectID)
 	}
 
 	return ASlAiHandNone::StaticClass();
+}
+
+void ASlAiHandObject::ChangeOverlayDetect(bool IsOpen)
+{
+	AffectionCollision->SetGenerateOverlapEvents(IsOpen);
 }
 

@@ -161,6 +161,8 @@ void SlAiDataHandle::InitializeGameData()
 {
 	// 初始化物品属性图
 	InitObjectAttr();
+	// 初始化资源属性图
+	InitResourceAttrMap();
 }
 
 void SlAiDataHandle::InitObjectAttr()
@@ -193,4 +195,9 @@ void SlAiDataHandle::InitObjectAttr()
 // 	}
 
 
+}
+
+void SlAiDataHandle::InitResourceAttrMap()
+{
+	SlAiSingleton<SlAiJsonHandle>::Get()->ResourceAttrJsonRead(ResourceAttrMap);
 }
