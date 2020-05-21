@@ -16,11 +16,23 @@ AQuestMaker::AQuestMaker()
 	ParticleSystem->SetupAttachment(Root);
 }
 
+void AQuestMaker::BeginPlay()
+{
+	GetQuestManager()->CompletedQuest.AddDynamic(this, &AQuestMaker::QuestUpdate);
+
+	RefreshVisibility();
+}
+
 void AQuestMaker::RefreshVisibility()
 {
 	FQuestInfo Quest = GetQuestManager()->GetQuest(QuestName);
 	bool Visibility = GetQuestManager()->IsActiveQuest(QuestName) && Quest.Progress == ShowAtProgress;
 	ParticleSystem->SetVisibility(Visibility);
 
+}
+
+void AQuestMaker::QuestUpdate(int32 Index)
+{
+	RefreshVisibility();
 }
 

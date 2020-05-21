@@ -20,6 +20,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RefreshVisibility();
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+private:
+	UFUNCTION()
+	void QuestUpdate(int32 Index);
 
 protected:
 	UFUNCTION(BlueprintPure, BlueprintImplementableEvent)
