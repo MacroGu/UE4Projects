@@ -22,7 +22,7 @@ protected:
 	virtual void BeginPlay() override;
 
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintImplementableEvent)
 	UGrabber* GetGrabber() const;
 
 public:	
@@ -36,6 +36,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UCameraComponent* Camera;
 
+// 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Game, meta = (AllowPrivateAccess = "true"))
+// 	UGrabber* Graber;
 
 private:
 	void Forward(float AxisValue);

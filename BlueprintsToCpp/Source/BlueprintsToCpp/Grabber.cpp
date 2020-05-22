@@ -2,7 +2,7 @@
 
 
 #include "Grabber.h"
-#include "Kismet/KismetMathLibrary.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "GameFramework/Actor.h"
 
 
@@ -55,7 +55,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	UE_LOG(LogTemp, Warning, TEXT("Grabber TickComponent"));
+	GetPhysicsComponent()->SetTargetLocationAndRotation(GetHoldLocation(), K2_GetComponentRotation());
 
 }
 
@@ -78,9 +78,21 @@ UPhysicsHandleComponent* UGrabber::GetPhysicsComponent() const
 	return GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 }
 
-bool UGrabber::TraceForPhysicsBodies_Implementation(AActor*& HitActor, UPrimitiveComponent*& HitComponent)
+bool UGrabber::TraceForPhysicsBodies(AActor*& HitActor, UPrimitiveComponent*& HitComponent)
 {
+	FHitResult hit_result;
+	TArray <TEnumAsByte <EObjectTypeQuery >> TraceObjectTypes;
+	TArray <AActor*> IgnoreActors;
+	TraceObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_PhysicsBody));
+	if (UKismetSystemLibrary::SphereTraceSingleForObjects(GetWorld(), K2_GetComponentLocation(), GetMaxGrabLocation(), GrabRadius,
+		TraceObjectTypes, false, IgnoreActors, EDrawDebugTrace::ForDuration, hit_result, true))
+	{
 
+		HitActor = hit_result.GetActor();
+		HitComponent = hit_result.GetComponent();
 
-	return true;
+		return true;
+	}
+
+	return false;
 }

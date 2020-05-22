@@ -18,13 +18,15 @@ AFirstPersonCharacter::AFirstPersonCharacter()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(GetCapsuleComponent());
 
+// 	Graber = CreateDefaultSubobject<UGrabber>(TEXT("Graber"));
+// 	Graber->SetupAttachment(Camera);
+
 }
 
 // Called when the game starts or when spawned
 void AFirstPersonCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -62,7 +64,10 @@ void AFirstPersonCharacter::Right(float AxisValue)
 
 void AFirstPersonCharacter::Grab()
 {
-	GetGrabber()->Grab();
+	if (GetGrabber())
+	{
+		GetGrabber()->Grab();
+	}
 }
 
 void AFirstPersonCharacter::Release()

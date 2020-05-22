@@ -41,7 +41,7 @@ protected:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void NotifyQuestActor(AActor* Actor);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable)
 	bool TraceForPhysicsBodies(AActor*& HitActor, UPrimitiveComponent*& HitComponent);
 
 public:	
@@ -54,5 +54,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float HoldDistance = 100.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float GrabRadius = 50.f;
 
 };
