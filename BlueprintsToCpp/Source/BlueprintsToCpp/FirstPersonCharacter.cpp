@@ -38,8 +38,9 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAction(TEXT("Grab"), IE_Pressed, this, &AFirstPersonCharacter::Grab);
-	PlayerInputComponent->BindAction(TEXT("Release"), IE_Pressed, this, &AFirstPersonCharacter::Release);
+	PlayerInputComponent->BindAction(TEXT("Grab"), IE_Released, this, &AFirstPersonCharacter::Release);
 
 }
 
