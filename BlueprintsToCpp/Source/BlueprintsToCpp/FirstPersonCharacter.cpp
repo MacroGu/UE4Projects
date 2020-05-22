@@ -3,6 +3,7 @@
 
 #include "FirstPersonCharacter.h"
 #include "Components/InputComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 
@@ -11,6 +12,11 @@ AFirstPersonCharacter::AFirstPersonCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	SetRootComponent(GetCapsuleComponent());
+
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->SetupAttachment(GetCapsuleComponent());
 
 }
 
