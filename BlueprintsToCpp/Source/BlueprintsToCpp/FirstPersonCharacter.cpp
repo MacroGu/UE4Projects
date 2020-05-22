@@ -3,6 +3,7 @@
 
 #include "FirstPersonCharacter.h"
 #include "Components/InputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 // Sets default values
@@ -33,17 +34,31 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	PlayerInputComponent->BindAxis(TEXT("Forward"), this, &AFirstPersonCharacter::Forward);
-	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AFirstPersonCharacter::Jump);
+	PlayerInputComponent->BindAxis(TEXT("Right"), this, &AFirstPersonCharacter::Right);
+	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &APawn::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Grab"), IE_Pressed, this, &AFirstPersonCharacter::Grab);
+	PlayerInputComponent->BindAction(TEXT("Release"), IE_Pressed, this, &AFirstPersonCharacter::Release);
 
 }
 
 void AFirstPersonCharacter::Forward(float AxisValue)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Forward :%f "), AxisValue);
+	GetCharacterMovement()->AddInputVector(GetActorForwardVector() * AxisValue);
 }
 
-void AFirstPersonCharacter::Jump()
+void AFirstPersonCharacter::Right(float AxisValue)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Jump  "));
+	GetCharacterMovement()->AddInputVector(GetActorRightVector() * AxisValue);
 }
 
+void AFirstPersonCharacter::Grab()
+{
+	GetGrabber()->Grab();
+}
+
+void AFirstPersonCharacter::Release()
+{
+	GetGrabber()->Release();
+}
