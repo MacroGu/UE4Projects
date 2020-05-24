@@ -78,6 +78,16 @@ UPhysicsHandleComponent* UGrabber::GetPhysicsComponent() const
 	return GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 }
 
+void UGrabber::NotifyQuestActor(AActor* Actor)
+{
+	if (!Actor)
+	{
+		return;
+	}
+
+
+}
+
 bool UGrabber::TraceForPhysicsBodies(AActor*& HitActor, UPrimitiveComponent*& HitComponent)
 {
 	FHitResult hit_result;

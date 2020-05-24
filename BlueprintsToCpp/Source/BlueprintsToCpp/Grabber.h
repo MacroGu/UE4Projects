@@ -38,7 +38,7 @@ protected:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	UPhysicsHandleComponent* GetPhysicsComponent() const;
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable)
 	void NotifyQuestActor(AActor* Actor);
 
 	UFUNCTION(BlueprintCallable)

@@ -18,8 +18,9 @@ AFirstPersonCharacter::AFirstPersonCharacter()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(GetCapsuleComponent());
 
-// 	Graber = CreateDefaultSubobject<UGrabber>(TEXT("Graber"));
-// 	Graber->SetupAttachment(Camera);
+	Graber = CreateDefaultSubobject<UGrabber>(TEXT("Graber"));
+	Graber->SetupAttachment(Camera);
+	Graber->AddToRoot();
 
 }
 
@@ -27,6 +28,11 @@ AFirstPersonCharacter::AFirstPersonCharacter()
 void AFirstPersonCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+UGrabber* AFirstPersonCharacter::GetGrabber() const
+{
+	return Graber;
 }
 
 // Called every frame
@@ -43,8 +49,8 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 
 	PlayerInputComponent->BindAxis(TEXT("Forward"), this, &AFirstPersonCharacter::Forward);
 	PlayerInputComponent->BindAxis(TEXT("Right"), this, &AFirstPersonCharacter::Right);
-	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
+ 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &APawn::AddControllerPitchInput);
+ 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAction(TEXT("Grab"), IE_Pressed, this, &AFirstPersonCharacter::Grab);
@@ -64,13 +70,16 @@ void AFirstPersonCharacter::Right(float AxisValue)
 
 void AFirstPersonCharacter::Grab()
 {
-	if (GetGrabber())
+	if (Graber)
 	{
-		GetGrabber()->Grab();
+		Graber->Grab();
 	}
 }
 
 void AFirstPersonCharacter::Release()
 {
-	GetGrabber()->Release();
+	if (Graber)
+	{
+		Graber->Release();
+	}
 }
