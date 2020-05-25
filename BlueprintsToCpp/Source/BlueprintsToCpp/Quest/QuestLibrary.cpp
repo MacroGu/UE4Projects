@@ -7,13 +7,10 @@
 
 AQuestManager* UQuestLibrary::GetQuestManager()
 {
-	auto game_mode = UGameplayStatics::GetGameMode();
-	if (!game_mode)
-	{
-		return nullptr;
-	}
 
 
+
+	return nullptr;
 
 
 }

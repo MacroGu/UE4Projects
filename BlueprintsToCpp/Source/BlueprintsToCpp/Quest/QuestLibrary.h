@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "Quest/QuestManager.h"
+#include "QuestManager.h"
 #include "QuestLibrary.generated.h"
 
 /**

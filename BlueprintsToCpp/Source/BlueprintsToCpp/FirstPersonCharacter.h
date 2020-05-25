@@ -25,6 +25,10 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	UGrabber* GetGrabber() const;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	int32 TestImplement() const;
+
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
