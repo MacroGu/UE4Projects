@@ -3,6 +3,7 @@
 
 #include "Grabber.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Quest/QuestTriggerPick.h"
 #include "GameFramework/Actor.h"
 
 
@@ -85,7 +86,13 @@ void UGrabber::NotifyQuestActor(AActor* Actor)
 		return;
 	}
 
+	UQuestTriggerPick* trigger_component = Cast<UQuestTriggerPick>(Actor->GetComponentByClass(UQuestTriggerPick::StaticClass()));
+	if (!trigger_component)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("trigger_component is nullptr"));
+	}
 
+	trigger_component->PickUp();
 }
 
 bool UGrabber::TraceForPhysicsBodies(AActor*& HitActor, UPrimitiveComponent*& HitComponent)
