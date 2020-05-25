@@ -20,7 +20,6 @@ AFirstPersonCharacter::AFirstPersonCharacter()
 
 	Graber = CreateDefaultSubobject<UGrabber>(TEXT("Graber"));
 	Graber->SetupAttachment(Camera);
-	Graber->AddToRoot();
 
 }
 

@@ -95,7 +95,7 @@ bool UGrabber::TraceForPhysicsBodies(AActor*& HitActor, UPrimitiveComponent*& Hi
 	TArray <AActor*> IgnoreActors;
 	TraceObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_PhysicsBody));
 	if (UKismetSystemLibrary::SphereTraceSingleForObjects(GetWorld(), K2_GetComponentLocation(), GetMaxGrabLocation(), GrabRadius,
-		TraceObjectTypes, false, IgnoreActors, EDrawDebugTrace::ForDuration, hit_result, true))
+		TraceObjectTypes, false, IgnoreActors, EDrawDebugTrace::None, hit_result, true))
 	{
 
 		HitActor = hit_result.GetActor();
