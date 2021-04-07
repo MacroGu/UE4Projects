@@ -1,0 +1,11 @@
+
+
+.vs/
+Binaries/
+Content/StarterContent/
+Intermediate/
+Saved/
+*.db
+*.sln
+*.opendb
+/DerivedDataCache
