@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "ExCommon.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ARPCCourseCharacter
@@ -45,6 +46,15 @@ ARPCCourseCharacter::ARPCCourseCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+}
+
+void ARPCCourseCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Êä³öDebug
+	DDH::Debug(20.f, FColor::Red) << "Hello UE4 " << 123 << 0.888 << FVector(30, 40, 50) << FColor::Red << DDH::Endl();
+
 }
 
 //////////////////////////////////////////////////////////////////////////
