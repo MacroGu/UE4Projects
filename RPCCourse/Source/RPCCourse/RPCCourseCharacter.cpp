@@ -9,6 +9,8 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "ExCommon.h"
+#include "Kismet/GameplayStatics.h"
+#include "RPCActor.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ARPCCourseCharacter
@@ -52,8 +54,20 @@ void ARPCCourseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Êä³öDebug
-	DDH::Debug(20.f, FColor::Red) << "Hello UE4 " << 123 << 0.888 << FVector(30, 40, 50) << FColor::Red << DDH::Endl();
+	// Ñ°ÕÒ³¡¾°µÄRPCActor
+	TArray<AActor*> ActArray;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARPCActor::StaticClass(), ActArray);
+	DDH::Debug() << "RPCActor Num --> " << ActArray.Num() << DDH::Endl();
+
+
+	if (GetWorld()->IsServer())
+	{
+		DDH::Debug() << "server " << DDH::Endl();
+	}
+	else
+	{
+		DDH::Debug() << "client " << DDH::Endl();
+	}
 
 }
 
