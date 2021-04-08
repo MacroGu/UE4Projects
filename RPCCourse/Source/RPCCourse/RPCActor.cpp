@@ -24,7 +24,7 @@ void ARPCActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (!GetWorld()->IsServer())
+	if (GetWorld()->IsServer())
 	{
 		GetWorld()->SpawnActor<ACubeRelicateActor>(ACubeRelicateActor::StaticClass(), GetActorLocation() + FVector::RightVector * 300.f, FQuat::Identity.Rotator());
 
@@ -32,6 +32,33 @@ void ARPCActor::BeginPlay()
 		GetWorld()->SpawnActor<ACubeNoRelicateActor>(ACubeNoRelicateActor::StaticClass(), GetActorLocation() - FVector::RightVector * 300.f, FQuat::Identity.Rotator());
 	}
 	
+	EchoNetMode();
+}
+
+void ARPCActor::EchoNetMode()
+{
+	ENetMode NetMode = GetNetMode();
+	switch (NetMode)
+	{
+	case NM_Standalone:
+		DDH::Debug() << "NM_Standalone" << DDH::Endl();
+		break;
+	case NM_DedicatedServer:
+		DDH::Debug() << "NM_DedicatedServer" << DDH::Endl();
+		break;
+	case NM_ListenServer:
+		DDH::Debug() << "NM_ListenServer" << DDH::Endl();
+		break;
+	case NM_Client:
+		DDH::Debug() << "NM_Client" << DDH::Endl();
+		break;
+	case NM_MAX:
+		DDH::Debug() << "NM_MAX" << DDH::Endl();
+		break;
+	default:
+		break;
+	}
+
 }
 
 // Called every frame

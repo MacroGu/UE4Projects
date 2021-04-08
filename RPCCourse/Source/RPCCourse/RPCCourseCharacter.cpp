@@ -57,17 +57,17 @@ void ARPCCourseCharacter::BeginPlay()
 	// Ñ°ÕÒ³¡¾°µÄRPCActor
 	TArray<AActor*> ActArray;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARPCActor::StaticClass(), ActArray);
-	DDH::Debug() << "RPCActor Num --> " << ActArray.Num() << DDH::Endl();
-
-
-	if (GetWorld()->IsServer())
-	{
-		DDH::Debug() << "server " << DDH::Endl();
-	}
-	else
-	{
-		DDH::Debug() << "client " << DDH::Endl();
-	}
+// 	DDH::Debug() << "RPCActor Num --> " << ActArray.Num() << DDH::Endl();
+// 
+// 
+// 	if (GetWorld()->IsServer())
+// 	{
+// 		DDH::Debug() << "server " << DDH::Endl();
+// 	}
+// 	else
+// 	{
+// 		DDH::Debug() << "client " << DDH::Endl();
+// 	}
 
 }
 
