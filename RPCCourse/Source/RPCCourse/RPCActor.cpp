@@ -32,7 +32,7 @@ void ARPCActor::BeginPlay()
 		GetWorld()->SpawnActor<ACubeNoRelicateActor>(ACubeNoRelicateActor::StaticClass(), GetActorLocation() - FVector::RightVector * 300.f, FQuat::Identity.Rotator());
 	}
 	
-	EchoNetMode();
+	// EchoNetMode();
 }
 
 void ARPCActor::EchoNetMode()

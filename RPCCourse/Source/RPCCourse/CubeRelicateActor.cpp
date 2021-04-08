@@ -31,7 +31,7 @@ void ACubeRelicateActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	DDH::Debug() << "IsServer --> " << GetWorld()->IsServer() << " ; HasAuthority() --> " << HasAuthority() << "AcubeReplicate BeginPlay " << DDH::Endl();
+	// DDH::Debug() << "IsServer --> " << GetWorld()->IsServer() << " ; HasAuthority() --> " << HasAuthority() << "AcubeReplicate BeginPlay " << DDH::Endl();
 
 
 }
