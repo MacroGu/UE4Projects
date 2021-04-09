@@ -60,6 +60,21 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
+	// 广播事件
+	UFUNCTION(NetMulticast, Reliable)
+	void SpaceBarNetMulticast();
+
+	void KeyJEvent();
+
+	UFUNCTION(Client, Reliable)
+	void KeyJClient(int32 InInt);
+
+	// H键绑定
+	void KeyHEvent();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+		void KeyHServerFunc(int32 InInt);
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

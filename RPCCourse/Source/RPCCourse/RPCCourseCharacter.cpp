@@ -11,6 +11,7 @@
 #include "ExCommon.h"
 #include "Kismet/GameplayStatics.h"
 #include "RPCActor.h"
+#include "NumPad.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ARPCCourseCharacter
@@ -71,6 +72,17 @@ void ARPCCourseCharacter::BeginPlay()
 
 }
 
+// void ARPCCourseCharacter::KeyHServer_Implementation(EMovementMode NewMovementMode, uint8 NewCustomMode /*= 0*/)
+// {
+// 
+// }
+// 
+// bool ARPCCourseCharacter::KeyHServer_Validate(EMovementMode NewMovementMode, uint8 NewCustomMode /*= 0*/)
+// {
+// 
+// 	return true;
+// }
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -80,6 +92,8 @@ void ARPCCourseCharacter::SetupPlayerInputComponent(class UInputComponent* Playe
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ARPCCourseCharacter::SpaceBarNetMulticast);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ARPCCourseCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ARPCCourseCharacter::MoveRight);
@@ -98,6 +112,11 @@ void ARPCCourseCharacter::SetupPlayerInputComponent(class UInputComponent* Playe
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ARPCCourseCharacter::OnResetVR);
+
+	PlayerInputComponent->BindKey(EKeys::J, IE_Pressed, this, &ARPCCourseCharacter::KeyJEvent);
+
+	PlayerInputComponent->BindKey(EKeys::H, IE_Pressed, this, &ARPCCourseCharacter::KeyHEvent);
+
 }
 
 
@@ -120,6 +139,63 @@ void ARPCCourseCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Lo
 void ARPCCourseCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 		StopJumping();
+}
+
+void ARPCCourseCharacter::KeyJEvent()
+{
+	if (GetWorld()->IsServer())
+	{
+		TArray<AActor*> ActArray;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARPCCourseCharacter::StaticClass(), ActArray);
+		for (int i = 0; i < ActArray.Num(); ++i)
+		{
+			if (ActArray[i] != this)
+			{
+				Cast<ARPCCourseCharacter>(ActArray[i])->KeyJClient(i);
+			}
+		}
+	}
+
+}
+
+void ARPCCourseCharacter::KeyHEvent()
+{
+	if (!GetWorld()->IsServer())
+	{
+		KeyHServerFunc(3);
+	}
+}
+
+
+
+void ARPCCourseCharacter::KeyHServerFunc_Implementation(int32 InInt)
+{
+	ANumPad* NumPad = GetWorld()->SpawnActor<ANumPad>(ANumPad::StaticClass(), GetActorTransform());
+	NumPad->AssignRenderText(FString::FromInt(InInt));
+
+}
+
+bool ARPCCourseCharacter::KeyHServerFunc_Validate(int32 InInt)
+{
+	if (InInt > 0)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void ARPCCourseCharacter::KeyJClient_Implementation(int32 InInt)
+{
+	ANumPad* NumPad = GetWorld()->SpawnActor<ANumPad>(ANumPad::StaticClass(), GetActorTransform());
+	NumPad->AssignRenderText(FString::FromInt(InInt));
+
+}
+
+void ARPCCourseCharacter::SpaceBarNetMulticast_Implementation()
+{
+	UClass* FireEffectClass = LoadClass<AActor>(NULL, TEXT("Blueprint'/Game/Blueprint/UnReplicateFire.UnReplicateFire_C'"));
+	GetWorld()->SpawnActor<AActor>(FireEffectClass, GetActorTransform());
 }
 
 void ARPCCourseCharacter::TurnAtRate(float Rate)
@@ -151,8 +227,7 @@ void ARPCCourseCharacter::MoveForward(float Value)
 void ARPCCourseCharacter::MoveRight(float Value)
 {
 	if ( (Controller != nullptr) && (Value != 0.0f) )
-	{
-		// find out which way is right
+	{		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 	
