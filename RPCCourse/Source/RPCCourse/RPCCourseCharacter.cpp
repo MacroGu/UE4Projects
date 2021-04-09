@@ -72,17 +72,6 @@ void ARPCCourseCharacter::BeginPlay()
 
 }
 
-// void ARPCCourseCharacter::KeyHServer_Implementation(EMovementMode NewMovementMode, uint8 NewCustomMode /*= 0*/)
-// {
-// 
-// }
-// 
-// bool ARPCCourseCharacter::KeyHServer_Validate(EMovementMode NewMovementMode, uint8 NewCustomMode /*= 0*/)
-// {
-// 
-// 	return true;
-// }
-
 //////////////////////////////////////////////////////////////////////////
 // Input
 
