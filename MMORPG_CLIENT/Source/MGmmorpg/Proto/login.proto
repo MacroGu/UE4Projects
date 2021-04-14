@@ -1,0 +1,51 @@
+syntax="proto3";
+
+//loginServer 登录服务器
+
+//登录注册协议
+package login;
+
+//----------------客户端心跳保活消息---------------	(25)
+message Login_HeartBeat_Request_30
+{
+}
+
+//-------------账号注册  signup---------------	(21000)
+message Login_RegisterAccount_Request_21000
+{
+	string accouent = 1;
+	string password = 2;
+	int32	RpcId		= 3;			
+	string	Message 	= 4;			
+	int32	Error 		= 5;		
+}
+
+message Login_RegisterAccount_Response_21001
+{
+	int32	RpcId		= 1;			
+	string	Message 	= 2;			
+	int32	Error 		= 3;			
+	//0.注册成功
+	//1.已有相同账号存在	
+}
+
+//-------------账号登录  login---------------	(21002)
+message Login_LoginServer_Request_21002
+{
+	string accouent = 1;
+	string password = 2;
+	int32	RpcId		= 3;			
+	string	Message 	= 4;			
+	int32	Error 		= 5;		
+}
+
+message Login_LoginServer_Response_21003
+{
+	int32 SessionID = 1;
+	// 若登录成功会返回唯一的 sessionID 作为标识
+	int32	RpcId		= 2;			
+	string	Message 	= 3;			
+	int32	Error 		= 4;		
+	//0.登录成功
+	//1.账号或密码错误	
+}

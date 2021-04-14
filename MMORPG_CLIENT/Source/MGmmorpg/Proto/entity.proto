@@ -1,0 +1,55 @@
+syntax="proto3";
+
+//实体属性控制相关消息
+package EntityMsg;
+
+
+//--------属性结构-------------
+message Struct_Property
+{ 
+	int32	PropID = 1;				// 属性ID
+	int32	Value = 2;				// 属性值
+}
+
+//--------实体全部的属性-------------
+message Struct_Entity_Properties
+{ 
+	int64	entityUUID = 1;						// 该实体的唯一ID
+	repeated Struct_Property properties = 2;	// 该实体的全部的属性
+}
+
+//-------------告知客户端属性改变 ---------------	(23000)
+message Notify_Self_Prop_Change_23000
+{
+	int64	PlayerID = 1;			// 发生属性变化的玩家的 UUID
+	repeated Struct_Property changedProps	= 2;			// 所有产生变化的属性
+	int32	RpcId		= 3;			//
+	string	Message 	= 4;			
+	int32	Error 		= 5;			//
+	
+}
+
+//-------------广播某一客实体属性改变 ---------------	(23001)
+message Brocast_Other_Prop_Change_23001
+{
+	int64	entityUUID = 1;									// 发生属性变化的实体的 UUID
+	repeated Struct_Property changedProps	= 2;			// 所有产生变化的属性
+	
+	
+	int32	RpcId		= 3;			
+	string	Message 	= 4;			
+	int32	Error 		= 5;
+	
+}
+
+//-------------广播全部相关实体的属性 ---------------	(23002)
+message Brocast_All_Eitities_Prop_23002
+{
+	repeated Struct_Entity_Properties EntitiesProps	= 1;			// 所有实体的属性
+	
+	
+	int32	RpcId		= 2;			
+	string	Message 	= 3;			
+	int32	Error 		= 4;
+	
+}

@@ -1,0 +1,186 @@
+syntax="proto3";
+
+//场景内相关协议
+package SceneMsg;
+
+
+//---------Struct------------------
+//---------玩家在场景中可见需要同步的状态-------------
+message Struct_Player_Status
+{
+	//玩家标识，唯一ID
+	int64	RoleUid	=	1;	
+	// 位置
+	int32	PositionX = 2;
+	int32	PositionY = 3;
+	int32	PositionZ = 4;
+	// 旋转值
+	int32	Pitch = 5;	
+	int32	Yaw = 6;
+	int32	Roll = 7;
+	// 速度
+	int32 SpeedX = 8;
+	int32 SpeedY = 9;
+	int32 SpeedZ = 10;						
+	// 是否活着
+	bool	IsAlive = 11;
+	// 血量
+	int32	HealthValue = 12;
+	// 是否在攻击
+	bool	IsAttacking =13;
+}
+
+//--------怪物在场景中可见需要同步的状态-------------
+message Struct_Monster_Status
+{
+	//玩家标识，唯一ID
+	int64	RoleUid	=	1;	
+	// 位置
+	int32	PositionX = 2;
+	int32	PositionY = 3;
+	int32	PositionZ = 4;				
+	// 是否活着
+	bool	IsAlive = 11;
+	// 血量
+	int32	HealthValue = 12;
+	// 是否在攻击
+	bool	IsAttacking =13;
+}
+
+//-------------请求进入 场景 enter scene ---------------	(22000)
+message Scene_EnterEnroll_Request_22000
+{
+	int32 sessionID = 1;		// 会话ID
+	Struct_Player_Status selfStatus = 2;		// 当前自己的状态
+	
+	int32	RpcId		= 3;			// 由客户端确定，服务器相同值返回
+	string	Message 	= 4;			
+	int32	Error 		= 5;			// 错误码 0为成功
+}
+
+message Scene_EnterEnroll_Response_22001
+{
+	repeated Struct_Player_Status playersstatus = 1;		// 其他玩家的状态
+	repeated Struct_Monster_Status monsterstatus = 2;		// 其他怪物的状态
+	
+	int32	RpcId		= 3;			
+	string	Message 	= 4;			
+	int32	Error 		= 5;	//0.进入成功  1: 不在服务器中		
+}
+
+//-------------玩家请求移动，朝向等状态改变 ---------------	(22002)
+message Scene_Player_Movement_Request_22002
+{
+	int32 sessionID = 1;		// 会话ID
+	Struct_Player_Status selfStatus = 2;		// 客户端自己的当前的状态
+	
+	int32	RpcId		= 3;			
+	string	Message 	= 4;			
+	int32	Error 		= 5;				
+}
+
+message Scene_Player_Movement_Response_22003
+{
+	int32	RpcId		= 1;			
+	string	Message 	= 2;			
+	int32	Error 		= 3;		//0.状态改变成功  1：失败
+}
+
+//-------------广播 玩家在场景中的状态改变 scene ---------------	(22011)
+message Scene_Brocast_player_Movement_22011
+{
+	Struct_Player_Status playerNewStatus = 1;		// 客户端最新的状态
+	
+	int32	RpcId		= 2;			
+	string	Message 	= 3;			
+	int32	Error 		= 4;			
+}
+
+//-------------请求退出 场景 leave scene ---------------	(22004)
+message Scene_LeaveScene_Request_22004
+{
+	int32 sessionID = 1;		// 会话ID
+	
+	int32	RpcId		= 2;			
+	string	Message 	= 3;			
+	int32	Error 		= 4;				
+}
+
+message Scene_LeaveScene_Response_22005
+{
+	int32	RpcId		= 1;			
+	string	Message 	= 2;			
+	int32	Error 		= 3;	//0.退出场景成功		
+}
+
+//-------------广播 新玩家进入场景 scene ---------------	(22006)
+message Scene_Brocast_new_player_enter_22006
+{
+	Struct_Player_Status newPlayerStatus = 1;		// 新玩家的状态
+	
+	int32	RpcId		= 2;			
+	string	Message 	= 3;			
+	int32	Error 		= 4;			
+}
+
+//-------------广播 新玩家离开 场景 scene ---------------	(22007)
+message Scene_Brocast_player_leave_22007
+{
+	int32 sessionID = 1;							// 离开玩家的uuid 目前用 sessionID代替
+	
+	int32	RpcId		= 2;			
+	string	Message 	= 3;			
+	int32	Error 		= 4;			
+}
+
+//-------------请求攻击怪物 hit monster   ---------------	(22008)
+message Player_Hit_Monster_Request_22008
+{
+	int32 sessionID = 1;		// 会话ID
+	int64 monsterUUID = 2;		// 欲攻击怪物的 monster  UUID
+	
+	int32	RpcId		= 3;			// 由客户端确定，服务器相同值返回
+	string	Message 	= 4;			
+	int32	Error 		= 5;			// 错误码 0为成功
+}
+
+message Player_Hit_Monster_Response_22009
+{	
+	int32	RpcId		= 1;			
+	string	Message 	= 2;			
+	int32	Error 		= 3;	//0.攻击成功    1：攻击失败
+}
+
+//-------------广播 玩家攻击 怪物 ---------------	(22010)
+message Scene_Brocast_Player_Attack_Monster_22010
+{
+	int64 attackerUUID = 1;							// 攻击者的 UUID
+	int64 hurtedUUID = 2;							// 受击者的 UUID
+	
+	int32	RpcId		= 3;			
+	string	Message 	= 4;			
+	int32	Error 		= 5;			
+}
+
+
+// 通知玩家，周围新的实体进入视野，初始化， 由于自己进入场景或者移动        22023 
+message Scene_Notify_Self_Other_Entity_Enter
+{
+	repeated Struct_Player_Status 	playersstatus	= 1;		// 其他玩家的状态
+	repeated Struct_Monster_Status 	monsterstatus 	= 2;		// 其他怪物的状态
+	
+	int32	RpcId		= 90;
+	string	Message 	= 91;
+	int32	Error 		= 92;	//0.进入成功  1: 不在服务器中		
+}
+
+// 通知玩家，周围视野的实体离开，销毁， 由于自己离开场景或者移动        22024 
+message Scene_Notify_Self_Other_Entity_Leave
+{
+	repeated int64 	leaveduuid	= 1;		// 离开视野实体的uuid
+
+	int32	RpcId		= 90;
+	string	Message 	= 91;
+	int32	Error 		= 92;	//0.进入成功  1: 不在服务器中		
+}
+
