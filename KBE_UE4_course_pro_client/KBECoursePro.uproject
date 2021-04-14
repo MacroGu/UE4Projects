@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.26",
+	"Category": "",
+	"Description": "",
+	"Enterprise": true,
+	"Modules": [
+		{
+			"Name": "KBECoursePro",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"UMG",
+				"CoreUObject"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "KBEnginePlugins",
+			"Enabled": true,
+			"MarketplaceURL": "http://kbengine.org/marketplace"
+		}
+	],
+	"AdditionalPluginDirectories": [
+		"../../../KBECoursePro/Plugins"
+	]
+}
