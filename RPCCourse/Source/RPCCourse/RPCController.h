@@ -19,4 +19,6 @@ public:
 
 	virtual void BeginPlay() override;
 	
+	void EchoNetMode();
+
 };

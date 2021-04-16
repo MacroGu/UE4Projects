@@ -9,3 +9,4 @@ Saved/
 *.sln
 *.opendb
 /DerivedDataCache
+Build/
