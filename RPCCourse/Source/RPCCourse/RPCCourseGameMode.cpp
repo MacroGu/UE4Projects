@@ -13,3 +13,13 @@ ARPCCourseGameMode::ARPCCourseGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 }
+
+void ARPCCourseGameMode::PostLogin(APlayerController* NewPlayer)
+{
+
+}
+
+void ARPCCourseGameMode::Logout(AController* Exiting)
+{
+
+}

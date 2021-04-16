@@ -13,6 +13,13 @@ class ARPCCourseGameMode : public AGameModeBase
 
 public:
 	ARPCCourseGameMode();
+
+	// 用户进入
+	virtual void PostLogin(APlayerController* NewPlayer) override;
+
+	// 用户退出
+	virtual void Logout(AController* Exiting) override;
+
 };
 
 
