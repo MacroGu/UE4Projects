@@ -20,6 +20,10 @@ public:
 	// ÓÃ»§ÍË³ö
 	virtual void Logout(AController* Exiting) override;
 
+protected:
+
+	int PlayerCount;
+
 };
 
 
