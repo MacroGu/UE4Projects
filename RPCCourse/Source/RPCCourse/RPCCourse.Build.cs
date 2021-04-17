@@ -8,6 +8,17 @@ public class RPCCourse : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "Slate", "UMG" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", 
+			"HeadMountedDisplay", 
+			"Slate", 
+			"UMG", 
+			"OnlineSubsystem", 
+			"OnlineSubsystemUtils", });
+
+		DynamicallyLoadedModuleNames.AddRange(
+			new string[] {
+				"OnlineSubsystemNull",
+			}
+		);
 	}
 }
