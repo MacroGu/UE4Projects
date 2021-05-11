@@ -38,20 +38,20 @@ void AReplTestPlayerController::GetLifetimeReplicatedProps(TArray< FLifetimeProp
 	DOREPLIFETIME(AReplTestPlayerController, PlayerAlias_);
 }
 
-bool AReplTestPlayerController::ServerMoveToDest_Validate(APawn* Pawn, const FVector DestLocation)
+bool AReplTestPlayerController::ServerMoveToDest_Validate(APawn* InPawn, const FVector DestLocation)
 {
 	//判断请求是否非法，不允许当前客户端操控其他客户端的角色
 	bool Rs = false;
-	if (AReplTestCharacter* RTC = Cast<AReplTestCharacter>(Pawn))
+	if (AReplTestCharacter* RTC = Cast<AReplTestCharacter>(InPawn))
 	{
 		Rs = RTC->Alias() == PlayerAlias();
 	}
 	return Rs;
 }
 
-void AReplTestPlayerController::ServerMoveToDest_Implementation(APawn* Pawn, const FVector DestLocation)
+void AReplTestPlayerController::ServerMoveToDest_Implementation(APawn* InPawn, const FVector DestLocation)
 {
-	if (AMyAIController* AIC = Cast<AMyAIController>(Pawn->GetController()))
+	if (AMyAIController* AIC = Cast<AMyAIController>(InPawn->GetController()))
 	{
 		AIC->MoveToLocation(DestLocation);
 	}
